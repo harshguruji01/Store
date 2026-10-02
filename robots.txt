@@ -1,0 +1,43 @@
+﻿# ═══════════════════════════════════════════════════════════
+# robots.txt — store.webguruji.online (HarshGuruJi Store)
+# Last Updated: 2026-10-02
+# ═══════════════════════════════════════════════════════════
+
+User-agent: *
+Allow: /
+
+# Public Pages
+Allow: /index.html
+Allow: /store.html
+Allow: /store-detail.html
+Allow: /app.html
+Allow: /login.html
+Allow: /signup.html
+Allow: /forgot-password.html
+Allow: /reset-password.html
+
+# Static Assets (for Google Image/Rich Snippets)
+Allow: /css/
+Allow: /js/
+Allow: /logo.png
+Allow: /logo-512.png
+Allow: /favicon.ico
+Allow: /harshlogo.png
+Allow: /harshlogo.webp
+
+# Disallow: Admin & Private Areas
+Disallow: /adminapkupload.html
+Disallow: /dashboard.html
+Disallow: /settings.html
+Disallow: /*.sql$
+Disallow: /*.md$
+
+# Crawl-delay for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap
+Sitemap: https://store.webguruji.online/sitemap.xml
