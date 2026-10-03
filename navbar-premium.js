@@ -31,7 +31,7 @@
           <!-- Brand Logo & Store Identity -->
           <a href="${isStorePage ? '#top' : 'index.html'}" class="store-brand" aria-label="HarshGuruJi Store Home">
             <div class="store-brand-logo-wrap">
-              <img src="harshlogo.png" onerror="this.src='logo.png'" alt="HarshGuruJi Store" class="store-brand-logo" fetchpriority="high">
+              <img src="store.png" onerror="this.src='harshlogo.png'" alt="HarshGuruJi Store" class="store-brand-logo" fetchpriority="high">
             </div>
             <div class="store-brand-text-wrap">
               <div class="store-brand-name">
