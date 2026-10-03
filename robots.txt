@@ -3,24 +3,66 @@
 # Website Name: HarshGuruJi
 # Main URL: https://www.webguruji.online
 # Subdomain: https://store.webguruji.online
-# Description: Official Android APKs, Windows Software & Games Store
+# Description: HarshGuruJi Official Android APKs, Windows PC Software & Games Store
+# Last Updated: 2026-10-03
 # ═══════════════════════════════════════════════════════════
 
 User-agent: *
 Allow: /
 
-# ── Public Pages ──────────────────────────────────────────
+# ── Public Store Pages ─────────────────────────────────────
 Allow: /index.html
-Allow: /app.html
+Allow: /store.html
 Allow: /store-detail.html
+Allow: /app.html
 Allow: /login.html
 Allow: /signup.html
 Allow: /forgot-password.html
 Allow: /reset-password.html
 
-# ── Static Assets (for Google Image/Rich Snippets) ───────
+# ── Static Assets (CSS, JS, Images for Rich Results) ───────
 Allow: /css/
 Allow: /js/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+Allow: /*.ico$
+Allow: /logo.png
+Allow: /logo-512.png
+Allow: /logo-192.png
+Allow: /favicon.ico
+Allow: /harshlogo.png
+Allow: /harshlogo.webp
+Allow: /ads.txt
+Allow: /manifest.json
+
+# ── Disallow: Admin, Dashboards & Private Endpoints ────────
+Disallow: /admin*
+Disallow: /admin/
+Disallow: /admin.html
+Disallow: /adminapkupload.html
+Disallow: /admin-*.html
+Disallow: /dashboard.html
+Disallow: /settings.html
+Disallow: /node_modules/
+Disallow: /*.sql$
+Disallow: /*.md$
+Disallow: /*.json$
+
+# ── Specific Directives for Google Search & Image Crawlers ─
+User-agent: Googlebot
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /store.html
+Allow: /store-detail.html
+Allow: /app.html
+
+User-agent: Googlebot-Image
 Allow: /logo.png
 Allow: /logo-512.png
 Allow: /logo-192.png
@@ -28,27 +70,20 @@ Allow: /favicon.ico
 Allow: /harshlogo.png
 Allow: /harshlogo.webp
 
-# ── Disallow: Admin & Private Areas ───────────────────────
-Disallow: /admin*
-Disallow: /admin/
-Disallow: /adminapkupload.html
-Disallow: /dashboard.html
-Disallow: /settings.html
-Disallow: /*.sql$
-Disallow: /*.md$
-Disallow: /*.json$
+User-agent: Bingbot
+Allow: /
+Allow: /css/
+Allow: /js/
 
-# ── Crawl-delay for aggressive bots ──────────────────────
+# ── Crawl-delay for aggressive commercial crawlers ─────────
 User-agent: AhrefsBot
 Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
 
-# ── Sitemaps ─────────────────────────────────────────────
+# ── Primary & Network Sitemaps ─────────────────────────────
 Sitemap: https://store.webguruji.online/sitemap.xml
-
-# ── Cross-domain Sitemaps (for unified Google indexing) ──
 Sitemap: https://www.webguruji.online/sitemap.xml
 Sitemap: https://books.webguruji.online/sitemap.xml
 Sitemap: https://chat.webguruji.online/sitemap.xml

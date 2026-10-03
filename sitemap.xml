@@ -1,109 +1,134 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
 
-  <!-- HOMEPAGE -->
+  <!-- ============================================================ -->
+  <!-- HarshGuruJi App Store — Official Software & Games Subdomain   -->
+  <!-- Website Name: HarshGuruJi                                    -->
+  <!-- Main URL: https://www.webguruji.online                       -->
+  <!-- Subdomain URL: https://store.webguruji.online/               -->
+  <!-- ============================================================ -->
+
+  <!-- STORE HOMEPAGE -->
   <url>
     <loc>https://store.webguruji.online/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/harshlogo.png</image:loc>
+      <image:title>HarshGuruJi App Store Logo</image:title>
+      <image:caption>HarshGuruJi official app store for Android APKs, PC software, and games</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://store.webguruji.online/logo-512.png</image:loc>
+      <image:title>HarshGuruJi Store 512 Icon</image:title>
+      <image:caption>HarshGuruJi Store brand icon</image:caption>
+    </image:image>
   </url>
 
-  <!-- STORE LISTING (Browse All Apps) -->
+  <!-- STORE LISTING (Browse All Apps & Software) -->
   <url>
     <loc>https://store.webguruji.online/store.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/harshlogo.png</image:loc>
+      <image:title>HarshGuruJi Store — Browse All APKs and Software</image:title>
+      <image:caption>Complete catalogue of verified Android APKs and Windows applications on HarshGuruJi</image:caption>
+    </image:image>
   </url>
 
-  <!-- APP DETAIL PAGE -->
+  <!-- APP DETAIL HUB -->
   <url>
     <loc>https://store.webguruji.online/store-detail.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
 
-  <!-- INDIVIDUAL APP DEEP LINKS -->
+  <!-- TOP FEATURED APP DEEP LINKS (Search Console Indexable) -->
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=chess</loc>
-    <lastmod>2026-10-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=chatbase</loc>
-    <lastmod>2026-10-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=hp-tube</loc>
-    <lastmod>2026-10-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=system-service</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=perplexity-ai-installer</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=bluestacks-installer</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=aurora-store</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
 
-  <!-- APP DOWNLOAD PAGE -->
+  <!-- STORE DOWNLOAD & PWA INSTALL PAGE -->
   <url>
     <loc>https://store.webguruji.online/app.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- AUTH PAGES -->
+  <!-- AUTHENTICATION PAGES -->
   <url>
     <loc>https://store.webguruji.online/login.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.70</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/signup.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.70</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/forgot-password.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.50</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/reset-password.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.50</priority>
   </url>
 
 </urlset>
