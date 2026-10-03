@@ -1,10 +1,8 @@
 /**
- * HarshGuruJi Master Admin Security Guard
- * Enforces strict 2-Step Verification from admin.html
- * 1. Step 1: harshguruji01@gmail.com
- * 2. Step 2: 2547277654
- * 
- * Direct URL access to this page without completing 2-Step Verification on admin.html is strictly forbidden.
+ * HarshGuruJi Admin Access Guard — Store Subdomain
+ * Strict Security Policy:
+ * Admin management is EXCLUSIVELY permitted from the Master Admin Panel (admin.html) at the main site (www.webguruji.online).
+ * Direct access to admin pages on the store subdomain is permanently forbidden and denied permission.
  */
 (function () {
   'use strict';
@@ -17,9 +15,9 @@
 
   function isVerified() {
     try {
-      var isAuth = sessionStorage.getItem(AUTH_STATE_KEY) === 'true';
-      var token = sessionStorage.getItem(AUTH_TOKEN_KEY);
-      var email = sessionStorage.getItem('admin_apk_email');
+      var isAuth = (sessionStorage.getItem(AUTH_STATE_KEY) === 'true') || (localStorage.getItem(AUTH_STATE_KEY) === 'true');
+      var token = sessionStorage.getItem(AUTH_TOKEN_KEY) || localStorage.getItem(AUTH_TOKEN_KEY);
+      var email = sessionStorage.getItem('admin_apk_email') || localStorage.getItem('admin_apk_email');
 
       if (isAuth && token === EXPECTED_HASH && email && email.toLowerCase() === REQUIRED_EMAIL) {
         return true;
@@ -28,36 +26,16 @@
     return false;
   }
 
+  // If not verified from admin.html on main site, block completely
   if (!isVerified()) {
-    // 1. Immediately hide the entire page DOM before browser renders any administrative elements
     if (document.documentElement) {
       document.documentElement.style.display = 'none';
     }
-
-    // 2. Wipe any unauthorized partial session keys
     try {
-      sessionStorage.removeItem(AUTH_STATE_KEY);
-      sessionStorage.removeItem(AUTH_TOKEN_KEY);
-      sessionStorage.removeItem('admin_contacts_auth');
-      sessionStorage.removeItem('admin_chatbase_auth');
-      sessionStorage.removeItem('hg_contributor_admin_unlocked');
-      sessionStorage.removeItem('admin_apk_email');
-      sessionStorage.removeItem('hg_master_admin_authenticated');
+      sessionStorage.clear();
+      alert("⛔ Access Denied — Permission Denied\n\nAdministrative controls are strictly restricted.\nAdmin access is ONLY allowed through the Master Admin Panel (admin.html) on the main website.\n\nRedirecting to main site...");
     } catch (e) {}
 
-    // 3. Block direct entry and redirect immediately to admin.html 2-Step Gate
-    var currentFile = window.location.pathname.split('/').pop() || 'admin-dashboard';
-    alert("⛔ Access Denied — Direct URL Entry Blocked\n\nThis command console cannot be accessed directly via URL.\nIt is strictly protected and can only be opened from the Master Admin Command Center (admin.html) after completing 2-Step Verification.\n\nRedirecting to Master Admin (admin.html)...");
-    
-    window.location.replace('admin.html?from=' + encodeURIComponent(currentFile));
-  } else {
-    // Authorized: Ensure all sub-page specific keys are populated for seamless operation
-    try {
-      sessionStorage.setItem('admin_chatbase_auth', 'true');
-      sessionStorage.setItem('admin_contacts_auth', 'true');
-      sessionStorage.setItem('hg_contributor_admin_unlocked', 'true');
-      sessionStorage.setItem('admin_apk_email', REQUIRED_EMAIL);
-      sessionStorage.setItem('hg_master_admin_authenticated', 'true');
-    } catch (e) {}
+    window.location.replace('https://www.webguruji.online/admin.html');
   }
 })();
