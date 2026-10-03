@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <ul>
               <li><a href="index.html">Featured Apps</a></li>
               <li><a href="app.html">All Applications</a></li>
-              <li><a href="adminapkupload.html">Upload APK Studio</a></li>
+              <li><a href="app.html?filter=popular">Popular Downloads</a></li>
               <li><a href="dashboard.html">User Dashboard</a></li>
             </ul>
           </div>
