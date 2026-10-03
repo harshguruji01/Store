@@ -53,6 +53,19 @@
     <priority>0.90</priority>
   </url>
 
+  <!-- FOUNDER & OWNER OFFICIAL PROFILE -->
+  <url>
+    <loc>https://store.webguruji.online/owner.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/harshlogo.png</image:loc>
+      <image:title>Harsh Patel (HarshGuruJi) — Platform Founder</image:title>
+      <image:caption>Official founder profile, achievements, and social channels of HarshGuruJi</image:caption>
+    </image:image>
+  </url>
+
   <!-- TOP FEATURED APP DEEP LINKS (Search Console Indexable) -->
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=chess</loc>
