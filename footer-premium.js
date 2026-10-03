@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Context-Aware Path Resolver ---
-  const isSubDir = window.location.pathname.includes('/tools/') || window.location.pathname.includes('/games/') || window.location.pathname.includes('/learning/') || window.location.pathname.includes('/oauth/');
-  const prefix = isSubDir ? '../' : '';
-
   // Remove existing hardcoded footers
   document.querySelectorAll('footer.footer, footer.hg-global-footer').forEach(el => el.remove());
   const oldFooterPlaceholder = document.getElementById('footer-placeholder');
@@ -15,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
     <footer class="hg-global-footer">
       <div class="hg-footer-grid">
         <div class="hg-footer-brand">
-          <a href="${prefix}index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none; margin-bottom: 1.5rem;">
-            <img src="${prefix}logo.png" alt="HarshGuruJi Logo" style="height: 48px; width: auto; border-radius: 8px;" />
-            <span style="font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.5rem; background:linear-gradient(135deg,#3b82f6,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">HarshGuruJi</span>
+          <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none; margin-bottom: 1.25rem;">
+            <img src="logo.png" alt="WebGuruJi Store Logo" style="height: 44px; width: auto; border-radius: 10px;" />
+            <span style="font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.45rem; background:linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">WebGuruJi Store</span>
           </a>
-          <p>HarshGuruJi is a premium digital platform for learning, AI, tools, knowledge, games, and useful online resources. Learn • Create • Explore • Build.</p>
+          <p>Official Applications, Software, and Games repository for WebGuruJi. Download verified Android APKs, Windows software, and tools with fast direct download mirrors.</p>
           
           <div class="hg-footer-search">
-            <input type="text" id="hg-footer-search-input" placeholder="Search HarshGuruJi..." aria-label="Search the website">
+            <input type="text" id="hg-footer-search-input" placeholder="Search store apps, packages..." aria-label="Search the store">
             <button type="button" id="hg-footer-search-btn" aria-label="Search">Search</button>
           </div>
 
@@ -41,71 +37,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <nav class="hg-footer-navs" aria-label="Footer Navigation">
           <div class="hg-footer-col">
-            <h5>Platform</h5>
+            <h5>Platforms</h5>
             <ul>
-              <li><a href="${prefix}index.html">Home</a></li>
-              <li><a href="${prefix}ai-hub.html">AI Hub</a></li>
-              <li><a href="${prefix}daily-special.html">Daily Special</a></li>
-              <li><a href="${prefix}dashboard.html">Dashboard</a></li>
-              <li><a href="${prefix}explore.html">Explore</a></li>
+              <li><a href="app.html?category=Android">Android APKs</a></li>
+              <li><a href="app.html?category=Windows">Windows Software</a></li>
+              <li><a href="app.html?category=Games">Games &amp; Play</a></li>
+              <li><a href="app.html?category=Utilities">Utilities &amp; Tools</a></li>
             </ul>
           </div>
           <div class="hg-footer-col">
-            <h5>Tools</h5>
+            <h5>Store Hub</h5>
             <ul>
-              <li><a href="${prefix}free-tools.html">All Tools</a></li>
-              <li><a href="${prefix}explore.html?search=Text">Text Tools</a></li>
-              <li><a href="${prefix}explore.html?search=Calculator">Calculators</a></li>
-              <li><a href="${prefix}explore.html?search=Converter">Converters</a></li>
-              <li><a href="${prefix}explore.html?search=Developer">Dev Tools</a></li>
+              <li><a href="index.html">Featured Apps</a></li>
+              <li><a href="app.html">All Applications</a></li>
+              <li><a href="adminapkupload.html">Upload APK Studio</a></li>
+              <li><a href="dashboard.html">User Dashboard</a></li>
             </ul>
           </div>
           <div class="hg-footer-col">
-            <h5>Learning</h5>
+            <h5>WebGuruJi Network</h5>
             <ul>
-              <li><a href="${prefix}learning-hub.html">Learning Hub</a></li>
-              <li><a href="${prefix}education.html">Education</a></li>
-              <li><a href="${prefix}learning/class-10-science.html">Class 10</a></li>
-              <li><a href="${prefix}learning/class.html?class=9">Class 9</a></li>
-              <li><a href="${prefix}learning/gk-quiz.html">Quizzes</a></li>
+              <li><a href="https://www.webguruji.online" target="_blank" rel="noopener noreferrer">Main Portal ↗</a></li>
+              <li><a href="https://books.webguruji.online" target="_blank" rel="noopener noreferrer">NCERT Books Library ↗</a></li>
+              <li><a href="https://chat.webguruji.online" target="_blank" rel="noopener noreferrer">ChatBase AI ↗</a></li>
             </ul>
           </div>
           <div class="hg-footer-col">
-            <h5>Games & Store</h5>
+            <h5>Company &amp; Legal</h5>
             <ul>
-              <li><a href="${prefix}gaming-hub.html">Gaming Hub</a></li>
-              <li><a href="${prefix}store.html">Store</a></li>
-              <li><a href="${prefix}Quiz India/index.html">Quiz India</a></li>
-              <li><a href="${prefix}games/tic-tac-toe.html">Tic Tac Toe</a></li>
-              <li><a href="${prefix}games/snake.html">Snake</a></li>
-            </ul>
-          </div>
-          <div class="hg-footer-col">
-            <h5>Company & Legal</h5>
-            <ul>
-              <li><a href="${prefix}about.html">About Us</a></li>
-              <li><a href="${prefix}contact.html">Contact Us</a></li>
-              <li><a href="${prefix}contributor.html">Contributors</a></li>
-              <li><a href="${prefix}privacy-policy.html">Privacy Policy</a></li>
-              <li><a href="${prefix}terms-and-conditions.html">Terms</a></li>
-              <li><a href="${prefix}cookie.html">Cookies</a></li>
+              <li><a href="https://www.webguruji.online/privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+              <li><a href="https://www.webguruji.online/terms-and-conditions.html" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
+              <li><a href="https://www.webguruji.online/contact.html" target="_blank" rel="noopener noreferrer">Contact Support</a></li>
             </ul>
           </div>
         </nav>
       </div>
 
       <div class="hg-footer-bottom">
-        <div style="display: flex; align-items: center; gap: 1.5rem;">
-          <img src="${prefix}harshlogo.png" loading="lazy" alt="Harsh Patel – Founder" style="height: 60px; width: auto; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);" />
+        <div style="display: flex; align-items: center; gap: 1.25rem;">
+          <img src="harshlogo.png" loading="lazy" alt="Harsh Patel – Founder" style="height: 52px; width: auto; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);" />
           <div>
-            <strong style="color: var(--text-primary, #fff); font-size: 1.1rem; display: block; margin-bottom: 0.2rem;">Harsh Patel</strong>
-            <span style="color: var(--accent-primary, #3b82f6); font-size: 0.85rem; font-weight: 600; display: block;">Founder & Owner</span>
+            <strong style="color: var(--text-primary, #fff); font-size: 1.05rem; display: block; margin-bottom: 0.2rem;">Harsh Patel</strong>
+            <span style="color: var(--snav-primary, #3b82f6); font-size: 0.82rem; font-weight: 600; display: block;">Founder &amp; Developer</span>
           </div>
         </div>
         
         <p style="color: var(--text-secondary, #a1a1aa); font-size: 0.85rem; margin: 0;">
-          &copy; <span id="hg-footer-year">${currentYear}</span> HarshGuruJi. All Rights Reserved. <br>
-          Made with ❤️ by HarshGuruJi.
+          &copy; <span id="hg-footer-year">${currentYear}</span> WebGuruJi. All Rights Reserved. <br>
+          Official WebGuruJi Store.
         </p>
       </div>
     </footer>
@@ -118,21 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('hg-footer-search-input');
   
   if (searchBtn && searchInput) {
-    searchBtn.addEventListener('click', function() {
+    const handleFooterSearch = () => {
       const val = searchInput.value.trim();
-      if(val) {
-        window.location.href = prefix + `explore.html?search=${encodeURIComponent(val)}`;
+      if (val) {
+        window.location.href = `app.html?search=${encodeURIComponent(val)}`;
       }
-    });
-    
+    };
+    searchBtn.addEventListener('click', handleFooterSearch);
     searchInput.addEventListener('keypress', function(e) {
-      if(e.key === 'Enter') {
-        const val = this.value.trim();
-        if(val) {
-          window.location.href = prefix + `explore.html?search=${encodeURIComponent(val)}`;
-        }
-      }
+      if (e.key === 'Enter') handleFooterSearch();
     });
   }
 });
-
