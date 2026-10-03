@@ -29,13 +29,13 @@
         <div class="store-nav-container">
           
           <!-- Brand Logo & Store Identity -->
-          <a href="${isStorePage ? '#top' : 'index.html'}" class="store-brand" aria-label="WebGuruJi Store Home">
+          <a href="${isStorePage ? '#top' : 'index.html'}" class="store-brand" aria-label="HarshGuruJi Store Home">
             <div class="store-brand-logo-wrap">
-              <img src="logo.png" alt="WebGuruJi Store" class="store-brand-logo" fetchpriority="high">
+              <img src="logo.png" alt="HarshGuruJi Store" class="store-brand-logo" fetchpriority="high">
             </div>
             <div class="store-brand-text-wrap">
               <div class="store-brand-name">
-                WebGuruJi <span class="store-brand-badge">STORE</span>
+                HarshGuruJi <span class="store-brand-badge">STORE</span>
               </div>
               <div class="store-brand-sub">Android APKs, PC &amp; Tools</div>
             </div>

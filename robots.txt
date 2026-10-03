@@ -1,43 +1,54 @@
-﻿# ═══════════════════════════════════════════════════════════
-# robots.txt — store.webguruji.online (HarshGuruJi Store)
-# Last Updated: 2026-10-02
+# ═══════════════════════════════════════════════════════════
+# robots.txt — store.webguruji.online (Store Subdomain)
+# Website Name: HarshGuruJi
+# Main URL: https://www.webguruji.online
+# Subdomain: https://store.webguruji.online
+# Description: Official Android APKs, Windows Software & Games Store
 # ═══════════════════════════════════════════════════════════
 
 User-agent: *
 Allow: /
 
-# Public Pages
+# ── Public Pages ──────────────────────────────────────────
 Allow: /index.html
-Allow: /store.html
-Allow: /store-detail.html
 Allow: /app.html
+Allow: /store-detail.html
 Allow: /login.html
 Allow: /signup.html
 Allow: /forgot-password.html
 Allow: /reset-password.html
 
-# Static Assets (for Google Image/Rich Snippets)
+# ── Static Assets (for Google Image/Rich Snippets) ───────
 Allow: /css/
 Allow: /js/
 Allow: /logo.png
 Allow: /logo-512.png
+Allow: /logo-192.png
 Allow: /favicon.ico
 Allow: /harshlogo.png
 Allow: /harshlogo.webp
 
-# Disallow: Admin & Private Areas
+# ── Disallow: Admin & Private Areas ───────────────────────
+Disallow: /admin*
+Disallow: /admin/
 Disallow: /adminapkupload.html
 Disallow: /dashboard.html
 Disallow: /settings.html
 Disallow: /*.sql$
 Disallow: /*.md$
+Disallow: /*.json$
 
-# Crawl-delay for aggressive bots
+# ── Crawl-delay for aggressive bots ──────────────────────
 User-agent: AhrefsBot
 Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
 
-# Sitemap
+# ── Sitemaps ─────────────────────────────────────────────
 Sitemap: https://store.webguruji.online/sitemap.xml
+
+# ── Cross-domain Sitemaps (for unified Google indexing) ──
+Sitemap: https://www.webguruji.online/sitemap.xml
+Sitemap: https://books.webguruji.online/sitemap.xml
+Sitemap: https://chat.webguruji.online/sitemap.xml

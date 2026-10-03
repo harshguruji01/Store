@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="hg-footer-grid">
         <div class="hg-footer-brand">
           <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none; margin-bottom: 1.25rem;">
-            <img src="logo.png" alt="WebGuruJi Store Logo" style="height: 44px; width: auto; border-radius: 10px;" />
-            <span style="font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.45rem; background:linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">WebGuruJi Store</span>
+            <img src="logo.png" alt="HarshGuruJi Store Logo" style="height: 44px; width: auto; border-radius: 10px;" />
+            <span style="font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.45rem; background:linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">HarshGuruJi Store</span>
           </a>
-          <p>Official Applications, Software, and Games repository for WebGuruJi. Download verified Android APKs, Windows software, and tools with fast direct download mirrors.</p>
+          <p>Official Applications, Software, and Games repository for HarshGuruJi. Download verified Android APKs, Windows software, and tools with fast direct download mirrors.</p>
           
           <div class="hg-footer-search">
             <input type="text" id="hg-footer-search-input" placeholder="Search store apps, packages..." aria-label="Search the store">
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         
         <p style="color: var(--text-secondary, #a1a1aa); font-size: 0.85rem; margin: 0;">
-          &copy; <span id="hg-footer-year">${currentYear}</span> WebGuruJi. All Rights Reserved. <br>
-          Official WebGuruJi Store.
+          &copy; <span id="hg-footer-year">${currentYear}</span> HarshGuruJi. All Rights Reserved. <br>
+          Official HarshGuruJi Store — <a href="https://www.webguruji.online" target="_blank" rel="noopener noreferrer" style="color:#60a5fa; text-decoration:none;">www.webguruji.online</a>
         </p>
       </div>
     </footer>
