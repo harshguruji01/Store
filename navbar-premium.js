@@ -31,27 +31,27 @@
           <!-- Brand Logo & Store Identity -->
           <a href="${isStorePage ? '#top' : 'index.html'}" class="store-brand" aria-label="HarshGuruJi Store Home">
             <div class="store-brand-logo-wrap">
-              <img src="logo.png" alt="HarshGuruJi Store" class="store-brand-logo" fetchpriority="high">
+              <img src="harshlogo.png" onerror="this.src='logo.png'" alt="HarshGuruJi Store" class="store-brand-logo" fetchpriority="high">
             </div>
             <div class="store-brand-text-wrap">
               <div class="store-brand-name">
                 HarshGuruJi <span class="store-brand-badge">STORE</span>
               </div>
-              <div class="store-brand-sub">Android APKs, PC &amp; Tools</div>
+              <div class="store-brand-sub">Official Apps &amp; Software Store</div>
             </div>
           </a>
 
           <!-- Desktop Center Navigation Links -->
-          <nav class="store-nav-center" aria-label="Desktop Navigation Links">
+          <nav class="store-nav-center" aria-label="Store Desktop Navigation Links">
             <a href="index.html" class="store-nav-link ${isStorePage ? 'active' : ''}" id="snav-link-home">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
-              <span>Store</span>
+              <span>Store Home</span>
             </a>
 
-            <a href="app.html" class="store-nav-link ${window.location.pathname.includes('app.html') ? 'active' : ''}" id="snav-link-apps">
+            <a href="app.html" class="store-nav-link ${window.location.pathname.includes('app.html') && !window.location.search ? 'active' : ''}" id="snav-link-apps">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                 <line x1="8" y1="21" x2="16" y2="21"></line>
@@ -60,59 +60,26 @@
               <span>All Apps</span>
             </a>
 
-            <!-- Categories Dropdown -->
-            <div class="store-dropdown-wrap" id="store-cat-dropdown-wrap">
-              <button type="button" class="store-dropdown-btn" id="btn-cat-dropdown" aria-haspopup="true" aria-expanded="false">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <path d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-                <span>Platforms</span>
-                <svg class="store-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
+            <!-- Direct Store Categories -->
+            <a href="app.html?category=Android" class="store-nav-link ${window.location.search.includes('Android') ? 'active' : ''}">
+              <span>🤖 Android</span>
+            </a>
 
-              <div class="store-mega-menu" id="store-cat-mega-menu" role="menu">
-                <div class="store-cat-grid">
-                  <a href="app.html?category=Android" class="store-cat-card">
-                    <span class="store-cat-icon">🤖</span>
-                    <div class="store-cat-info">
-                      <span class="store-cat-name">Android APKs</span>
-                      <span class="store-cat-desc">Verified Mobile Packages</span>
-                    </div>
-                  </a>
-                  <a href="app.html?category=Windows" class="store-cat-card">
-                    <span class="store-cat-icon">🪟</span>
-                    <div class="store-cat-info">
-                      <span class="store-cat-name">Windows Software</span>
-                      <span class="store-cat-desc">EXE &amp; MSI Installers</span>
-                    </div>
-                  </a>
-                  <a href="app.html?category=Games" class="store-cat-card">
-                    <span class="store-cat-icon">🎮</span>
-                    <div class="store-cat-info">
-                      <span class="store-cat-name">Games</span>
-                      <span class="store-cat-desc">Chess &amp; Arcade Games</span>
-                    </div>
-                  </a>
-                  <a href="app.html?category=Utilities" class="store-cat-card">
-                    <span class="store-cat-icon">🛠️</span>
-                    <div class="store-cat-info">
-                      <span class="store-cat-name">Utilities &amp; Tools</span>
-                      <span class="store-cat-desc">Productivity &amp; Media</span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
+            <a href="app.html?category=Windows" class="store-nav-link ${window.location.search.includes('Windows') ? 'active' : ''}">
+              <span>🪟 Windows</span>
+            </a>
+
+            <a href="app.html?category=Games" class="store-nav-link ${window.location.search.includes('Games') ? 'active' : ''}">
+              <span>🎮 Games</span>
+            </a>
 
             <!-- Books Subdomain Cross-Link -->
-            <a href="https://books.webguruji.online" target="_blank" rel="noopener noreferrer" class="store-nav-link" title="NCERT Books Library">
+            <a href="https://books.webguruji.online" target="_blank" rel="noopener noreferrer" class="store-nav-link" title="HarshGuruJi NCERT Books Library">
               <span>📚 Books</span>
             </a>
 
             <!-- Chat Subdomain Cross-Link -->
-            <a href="https://chat.webguruji.online" target="_blank" rel="noopener noreferrer" class="store-nav-link" title="ChatBase AI">
+            <a href="https://chat.webguruji.online" target="_blank" rel="noopener noreferrer" class="store-nav-link" title="HarshGuruJi ChatBase AI">
               <span>💬 Chat</span>
             </a>
           </nav>
@@ -125,7 +92,7 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <span class="store-search-text">Search apps, APKs...</span>
+              <span class="store-search-text">Search store...</span>
               <kbd class="store-search-kbd">Ctrl K</kbd>
             </button>
 
@@ -134,13 +101,13 @@
             
             <div id="store-user-menu" class="store-user-menu" style="display:none;">
               <a href="dashboard.html" title="User Dashboard">
-                <img src="logo.png" alt="Profile" id="store-nav-avatar" class="store-user-avatar">
+                <img src="harshlogo.png" onerror="this.src='logo.png'" alt="Profile" id="store-nav-avatar" class="store-user-avatar">
               </a>
             </div>
 
             <!-- Main Portal Link -->
-            <a href="https://www.webguruji.online" target="_blank" rel="noopener noreferrer" class="store-portal-pill" title="Go to Main WebGuruJi Portal">
-              <span>WebGuruJi Portal ↗</span>
+            <a href="https://www.webguruji.online" target="_blank" rel="noopener noreferrer" class="store-portal-pill" title="Go to Main HarshGuruJi Portal">
+              <span>HarshGuruJi Main ↗</span>
             </a>
           </div>
 
@@ -160,7 +127,7 @@
         </a>
 
         <!-- Center Apps Button -->
-        <a href="app.html" class="store-dock-item store-dock-item-primary ${window.location.pathname.includes('app.html') ? 'active' : ''}">
+        <a href="app.html" class="store-dock-item store-dock-item-primary ${window.location.pathname.includes('app.html') && !window.location.search ? 'active' : ''}">
           <span class="store-dock-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -169,6 +136,11 @@
             </svg>
           </span>
           <span class="store-dock-label">Apps</span>
+        </a>
+
+        <a href="app.html?category=Android" class="store-dock-item ${window.location.search.includes('Android') ? 'active' : ''}">
+          <span class="store-dock-icon">🤖</span>
+          <span class="store-dock-label">APKs</span>
         </a>
 
         <button type="button" class="store-dock-item" onclick="window.focusStoreSearch()">
@@ -187,7 +159,7 @@
               <path d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
           </span>
-          <span class="store-dock-label">Platforms</span>
+          <span class="store-dock-label">More</span>
         </button>
 
         <a href="login.html" id="store-dock-auth-link" class="store-dock-item">
@@ -207,7 +179,7 @@
           <div class="store-sheet-handle"></div>
           <div class="store-sheet-head">
             <div class="store-sheet-title">
-              <span>🛍️</span> Explore Platforms
+              <span>🛍️</span> Explore HarshGuruJi Store
             </div>
             <button type="button" class="store-sheet-close" onclick="window.toggleStoreCategoriesSheet(false)">&times;</button>
           </div>
@@ -225,14 +197,23 @@
               <span style="font-size:1.4rem;">🎮</span>
               <div><strong>Games &amp; Play</strong><div style="font-size:0.75rem; color:#94a3b8;">Chess &amp; Casual Games</div></div>
             </a>
+            <a href="app.html?category=Utilities" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; background:rgba(255,255,255,0.04); color:#fff; text-decoration:none;">
+              <span style="font-size:1.4rem;">🛠️</span>
+              <div><strong>Utilities &amp; Tools</strong><div style="font-size:0.75rem; color:#94a3b8;">Productivity Software</div></div>
+            </a>
           </div>
 
-          <div style="margin-top:14px; display:flex; gap:8px;">
-            <a href="https://books.webguruji.online" target="_blank" style="flex:1; text-align:center; padding:10px; background:rgba(99,102,241,0.2); border-radius:10px; color:#a5b4fc; text-decoration:none; font-size:0.82rem; font-weight:600;">
-              📚 Books Library ↗
-            </a>
-            <a href="https://chat.webguruji.online" target="_blank" style="flex:1; text-align:center; padding:10px; background:rgba(168,85,247,0.2); border-radius:10px; color:#d8b4fe; text-decoration:none; font-size:0.82rem; font-weight:600;">
-              💬 ChatBase AI ↗
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:8px;">
+              <a href="https://books.webguruji.online" target="_blank" style="flex:1; text-align:center; padding:10px; background:rgba(99,102,241,0.2); border-radius:10px; color:#a5b4fc; text-decoration:none; font-size:0.82rem; font-weight:600;">
+                📚 Books Library ↗
+              </a>
+              <a href="https://chat.webguruji.online" target="_blank" style="flex:1; text-align:center; padding:10px; background:rgba(168,85,247,0.2); border-radius:10px; color:#d8b4fe; text-decoration:none; font-size:0.82rem; font-weight:600;">
+                💬 ChatBase AI ↗
+              </a>
+            </div>
+            <a href="https://www.webguruji.online" target="_blank" style="text-align:center; padding:10px; background:rgba(255,255,255,0.06); border-radius:10px; color:#f8fafc; text-decoration:none; font-size:0.82rem; font-weight:600;">
+              🌐 HarshGuruJi Main Portal ↗
             </a>
           </div>
         </div>

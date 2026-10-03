@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </ul>
           </div>
           <div class="hg-footer-col">
-            <h5>WebGuruJi Network</h5>
+            <h5>HarshGuruJi Network</h5>
             <ul>
               <li><a href="https://www.webguruji.online" target="_blank" rel="noopener noreferrer">Main Portal ↗</a></li>
               <li><a href="https://books.webguruji.online" target="_blank" rel="noopener noreferrer">NCERT Books Library ↗</a></li>
