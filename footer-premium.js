@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="hg-footer-grid">
         <div class="hg-footer-brand">
           <a href="index.html" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none; margin-bottom: 1.25rem;">
-            <img src="logo.png" alt="HarshGuruJi Store Logo" style="height: 44px; width: auto; border-radius: 10px;" />
+            <img src="store.png" onerror="this.src='logo.png'" alt="HarshGuruJi Store Logo" style="height: 36px; width: auto; max-width: 44px; border-radius: 8px; object-fit: contain;" />
             <span style="font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.45rem; background:linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">HarshGuruJi Store</span>
           </a>
           <p>Official Applications, Software, and Games repository for HarshGuruJi. Download verified Android APKs, Windows software, and tools with fast direct download mirrors.</p>

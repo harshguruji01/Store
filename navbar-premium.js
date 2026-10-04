@@ -1,7 +1,8 @@
 /**
  * ============================================================================
- * WEBGURUJI STORE — PREMIUM NAVIGATION ENGINE
+ * HARSHGURUJI STORE — PREMIUM NAVIGATION ENGINE
  * Dedicated Navigation Controller for store.webguruji.online & app.html
+ * Fully unified with HarshGuruJi ecosystem & fixed mobile bottom navigation
  * ============================================================================
  */
 
@@ -21,17 +22,17 @@
 
   function initStoreNavigation() {
     // Clean up old navbars
-    document.querySelectorAll('.store-nav-header, .store-bottom-dock, .store-sheet-overlay, .hg-header, #hg-global-navbar, #hg-bottom-bar, .premium-navbar').forEach(el => el.remove());
+    document.querySelectorAll('.store-nav-header, .store-bottom-dock, .store-sheet-overlay, .hg-header, #hg-global-navbar, #hg-bottom-bar, .hg-bottom-bar, .premium-navbar').forEach(el => el.remove());
 
     const navHTML = `
-      <!-- Desktop & Tablet Top Sticky Navigation -->
+      <!-- Desktop & Tablet Top Fixed Navigation -->
       <header class="store-nav-header" id="store-nav-header" role="banner" aria-label="Store Main Navigation">
         <div class="store-nav-container">
           
           <!-- Brand Logo & Store Identity -->
           <a href="${isStorePage ? '#top' : 'index.html'}" class="store-brand" aria-label="HarshGuruJi Store Home">
             <div class="store-brand-logo-wrap">
-              <img src="store.png" onerror="this.src='harshlogo.png'" alt="HarshGuruJi Store" class="store-brand-logo" fetchpriority="high">
+              <img src="store.png" onerror="this.src='logo.png'" alt="HarshGuruJi Store" class="store-brand-logo" fetchpriority="high">
             </div>
             <div class="store-brand-text-wrap">
               <div class="store-brand-name">
@@ -101,123 +102,93 @@
             
             <div id="store-user-menu" class="store-user-menu" style="display:none;">
               <a href="dashboard.html" title="User Dashboard">
-                <img src="harshlogo.png" onerror="this.src='logo.png'" alt="Profile" id="store-nav-avatar" class="store-user-avatar">
+                <img src="store.png" onerror="this.src='logo.png'" alt="Profile" id="store-nav-avatar" class="store-user-avatar">
               </a>
             </div>
 
             <!-- Main Portal Link -->
             <a href="https://www.webguruji.online" target="_blank" rel="noopener noreferrer" class="store-portal-pill" title="Go to Main HarshGuruJi Portal">
-              <span>HarshGuruJi Main ↗</span>
+              <span>Main Portal ↗</span>
             </a>
           </div>
 
         </div>
       </header>
 
-      <!-- Mobile Floating Glass Dock (<= 1024px) -->
-      <nav class="store-bottom-dock" id="store-bottom-dock" aria-label="Mobile Store Navigation">
-        <a href="index.html" class="store-dock-item ${isStorePage ? 'active' : ''}">
-          <span class="store-dock-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+      <!-- Unified Mobile Bottom Navigation Bar (Identical to HarshGuruJi Ecosystem) -->
+      <nav class="hg-bottom-bar" id="hg-bottom-bar" aria-label="Mobile Navigation">
+        <a href="https://books.webguruji.online" class="hg-bottom-item" id="bottom-nav-books" title="NCERT Books" target="_blank" rel="noopener noreferrer">
+          <span class="hg-bottom-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </span>
+          <span class="hg-bottom-label">Books</span>
+        </a>
+
+        <a href="https://www.webguruji.online/daily-special.html" class="hg-bottom-item" id="bottom-nav-dailyspecial" title="Daily Special">
+          <span class="hg-bottom-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </span>
+          <span class="hg-bottom-label">Daily Special</span>
+        </a>
+
+        <a href="${isStorePage ? '#top' : 'index.html'}" class="hg-bottom-item active" id="bottom-nav-store" title="HarshGuruJi Store">
+          <span class="hg-bottom-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </span>
+          <span class="hg-bottom-label">Store</span>
+        </a>
+
+        <a href="https://www.webguruji.online/" class="hg-bottom-item hg-bottom-item-home" id="bottom-nav-home" title="Home">
+          <span class="hg-bottom-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
           </span>
-          <span class="store-dock-label">Store</span>
+          <span class="hg-bottom-label">Home</span>
         </a>
 
-        <!-- Center Apps Button -->
-        <a href="app.html" class="store-dock-item store-dock-item-primary ${window.location.pathname.includes('app.html') && !window.location.search ? 'active' : ''}">
-          <span class="store-dock-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
+        <a href="https://chat.webguruji.online" class="hg-bottom-item" id="bottom-nav-chat" target="_blank" rel="noopener noreferrer" title="Chat App">
+          <span class="hg-bottom-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
             </svg>
           </span>
-          <span class="store-dock-label">Apps</span>
+          <span class="hg-bottom-label">Chat</span>
         </a>
 
-        <a href="app.html?category=Android" class="store-dock-item ${window.location.search.includes('Android') ? 'active' : ''}">
-          <span class="store-dock-icon">🤖</span>
-          <span class="store-dock-label">APKs</span>
+        <a href="https://www.webguruji.online/contributor.html" class="hg-bottom-item" id="bottom-nav-contributor" title="Contributors">
+          <span class="hg-bottom-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </span>
+          <span class="hg-bottom-label">Contributor</span>
         </a>
 
-        <button type="button" class="store-dock-item" onclick="window.focusStoreSearch()">
-          <span class="store-dock-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </span>
-          <span class="store-dock-label">Search</span>
-        </button>
-
-        <button type="button" class="store-dock-item" onclick="window.toggleStoreCategoriesSheet(true)">
-          <span class="store-dock-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </span>
-          <span class="store-dock-label">More</span>
-        </button>
-
-        <a href="login.html" id="store-dock-auth-link" class="store-dock-item">
-          <span class="store-dock-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <a href="login.html" class="hg-bottom-item" id="bottom-nav-auth" title="Profile / Account">
+          <span class="hg-bottom-icon" id="bottom-auth-icon-wrap">
+            <svg id="bottom-auth-default-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
+            <img id="bottom-auth-avatar" src="store.png" onerror="this.src='logo.png'" alt="Profile" style="display:none;" />
           </span>
-          <span class="store-dock-label" id="store-dock-auth-label">Account</span>
+          <span class="hg-bottom-label" id="bottom-auth-label">Login</span>
         </a>
       </nav>
-
-      <!-- Mobile Categories Bottom Sheet Modal -->
-      <div class="store-sheet-overlay" id="store-sheet-overlay" onclick="if(event.target===this) window.toggleStoreCategoriesSheet(false)" aria-hidden="true">
-        <div class="store-bottom-sheet" role="dialog" aria-modal="true" aria-label="Platforms Sheet">
-          <div class="store-sheet-handle"></div>
-          <div class="store-sheet-head">
-            <div class="store-sheet-title">
-              <span>🛍️</span> Explore HarshGuruJi Store
-            </div>
-            <button type="button" class="store-sheet-close" onclick="window.toggleStoreCategoriesSheet(false)">&times;</button>
-          </div>
-
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="app.html?category=Android" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; background:rgba(255,255,255,0.04); color:#fff; text-decoration:none;">
-              <span style="font-size:1.4rem;">🤖</span>
-              <div><strong>Android APKs</strong><div style="font-size:0.75rem; color:#94a3b8;">Mobile Packages &amp; Games</div></div>
-            </a>
-            <a href="app.html?category=Windows" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; background:rgba(255,255,255,0.04); color:#fff; text-decoration:none;">
-              <span style="font-size:1.4rem;">🪟</span>
-              <div><strong>Windows Software</strong><div style="font-size:0.75rem; color:#94a3b8;">PC Utilities &amp; Installers</div></div>
-            </a>
-            <a href="app.html?category=Games" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; background:rgba(255,255,255,0.04); color:#fff; text-decoration:none;">
-              <span style="font-size:1.4rem;">🎮</span>
-              <div><strong>Games &amp; Play</strong><div style="font-size:0.75rem; color:#94a3b8;">Chess &amp; Casual Games</div></div>
-            </a>
-            <a href="app.html?category=Utilities" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; background:rgba(255,255,255,0.04); color:#fff; text-decoration:none;">
-              <span style="font-size:1.4rem;">🛠️</span>
-              <div><strong>Utilities &amp; Tools</strong><div style="font-size:0.75rem; color:#94a3b8;">Productivity Software</div></div>
-            </a>
-          </div>
-
-          <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; gap:8px;">
-              <a href="https://books.webguruji.online" target="_blank" style="flex:1; text-align:center; padding:10px; background:rgba(99,102,241,0.2); border-radius:10px; color:#a5b4fc; text-decoration:none; font-size:0.82rem; font-weight:600;">
-                📚 Books Library ↗
-              </a>
-              <a href="https://chat.webguruji.online" target="_blank" style="flex:1; text-align:center; padding:10px; background:rgba(168,85,247,0.2); border-radius:10px; color:#d8b4fe; text-decoration:none; font-size:0.82rem; font-weight:600;">
-                💬 ChatBase AI ↗
-              </a>
-            </div>
-            <a href="https://www.webguruji.online" target="_blank" style="text-align:center; padding:10px; background:rgba(255,255,255,0.06); border-radius:10px; color:#f8fafc; text-decoration:none; font-size:0.82rem; font-weight:600;">
-              🌐 HarshGuruJi Main Portal ↗
-            </a>
-          </div>
-        </div>
-      </div>
     `;
 
     document.body.insertAdjacentHTML('afterbegin', navHTML);
@@ -225,15 +196,17 @@
     // Scroll effect
     const header = document.getElementById('store-nav-header');
     if (header) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 25) header.classList.add('scrolled');
+      const handleScroll = () => {
+        if (window.scrollY > 15) header.classList.add('scrolled');
         else header.classList.remove('scrolled');
-      }, { passive: true });
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
     }
   }
 
   window.focusStoreSearch = function () {
-    const input = document.getElementById('search-input') || document.querySelector('.search-input');
+    const input = document.getElementById('search-input') || document.querySelector('.search-input') || document.getElementById('global-search-input');
     if (input) {
       input.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => input.focus(), 250);
@@ -242,28 +215,11 @@
     }
   };
 
-  window.toggleStoreCategoriesSheet = function (open) {
-    const overlay = document.getElementById('store-sheet-overlay');
-    if (!overlay) return;
-    if (open) {
-      overlay.classList.add('active');
-      overlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    } else {
-      overlay.classList.remove('active');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  };
-
   function setupKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         window.focusStoreSearch();
-      }
-      if (e.key === 'Escape') {
-        window.toggleStoreCategoriesSheet(false);
       }
     });
   }
@@ -287,19 +243,30 @@
   function updateAuthUI(user) {
     const authBtn = document.getElementById('store-auth-btn');
     const userMenu = document.getElementById('store-user-menu');
-    const dockLink = document.getElementById('store-dock-auth-link');
-    const dockLabel = document.getElementById('store-dock-auth-label');
+    const bottomAuthItem = document.getElementById('bottom-nav-auth');
+    const bottomAuthAvatar = document.getElementById('bottom-auth-avatar');
+    const bottomAuthDefaultIcon = document.getElementById('bottom-auth-default-icon');
+    const bottomAuthLabel = document.getElementById('bottom-auth-label');
 
     if (user) {
       if (authBtn) authBtn.style.display = 'none';
       if (userMenu) userMenu.style.display = 'flex';
-      if (dockLink) dockLink.href = 'dashboard.html';
-      if (dockLabel) dockLabel.textContent = 'Dashboard';
+      if (bottomAuthItem) bottomAuthItem.href = 'dashboard.html';
+      if (bottomAuthLabel) bottomAuthLabel.textContent = 'Account';
+      if (bottomAuthAvatar) {
+        const meta = user.user_metadata || {};
+        const avatarUrl = meta.avatar_url || meta.picture || 'store.png';
+        bottomAuthAvatar.src = avatarUrl;
+        bottomAuthAvatar.style.display = 'block';
+        if (bottomAuthDefaultIcon) bottomAuthDefaultIcon.style.display = 'none';
+      }
     } else {
       if (authBtn) authBtn.style.display = 'inline-flex';
       if (userMenu) userMenu.style.display = 'none';
-      if (dockLink) dockLink.href = 'login.html';
-      if (dockLabel) dockLabel.textContent = 'Login';
+      if (bottomAuthItem) bottomAuthItem.href = 'login.html';
+      if (bottomAuthLabel) bottomAuthLabel.textContent = 'Login';
+      if (bottomAuthAvatar) bottomAuthAvatar.style.display = 'none';
+      if (bottomAuthDefaultIcon) bottomAuthDefaultIcon.style.display = 'block';
     }
   }
 
