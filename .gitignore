@@ -1,0 +1,5 @@
+# Ignore local temporary/task files
+next imple.txt
+*.log
+.DS_Store
+Thumbs.db

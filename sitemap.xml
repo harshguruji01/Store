@@ -105,15 +105,45 @@
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html?slug=aurora-store</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=comet</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/comet-logo.png</image:loc>
+      <image:title>Comet Desktop Utility</image:title>
+      <image:caption>Download Comet desktop utility installer for Windows PC on HarshGuruJi Store</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=hermes-ai-agent</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/hermes-logo.png</image:loc>
+      <image:title>Hermes AI Agent for PC</image:title>
+      <image:caption>Download Hermes AI Agent desktop assistant for Windows on HarshGuruJi Store</image:caption>
+    </image:image>
+  </url>
+
+  <!-- STORE DATA FEED (JSON Catalog for Crawlers & APIs) -->
+  <url>
+    <loc>https://store.webguruji.online/data/apps.json</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
 
   <!-- STORE DOWNLOAD & PWA INSTALL PAGE -->
   <url>
     <loc>https://store.webguruji.online/app.html</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
@@ -121,25 +151,25 @@
   <!-- AUTHENTICATION PAGES -->
   <url>
     <loc>https://store.webguruji.online/login.html</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/signup.html</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/forgot-password.html</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/reset-password.html</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>

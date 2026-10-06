@@ -23,6 +23,8 @@ Allow: /reset-password.html
 # ── Static Assets (CSS, JS, Images for Rich Results) ───────
 Allow: /css/
 Allow: /js/
+Allow: /data/
+Allow: /data/apps.json
 Allow: /*.css$
 Allow: /*.js$
 Allow: /*.png$
@@ -51,13 +53,16 @@ Disallow: /settings.html
 Disallow: /node_modules/
 Disallow: /*.sql$
 Disallow: /*.md$
-Disallow: /*.json$
+Disallow: /package.json
+Disallow: /package-lock.json
 
 # ── Specific Directives for Google Search & Image Crawlers ─
 User-agent: Googlebot
 Allow: /
 Allow: /css/
 Allow: /js/
+Allow: /data/
+Allow: /data/apps.json
 Allow: /store.html
 Allow: /store-detail.html
 Allow: /app.html
