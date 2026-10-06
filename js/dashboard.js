@@ -10,7 +10,7 @@ export class DashboardManager {
     async init() {
         const { data: { session } } = await supabase.auth.getSession();
         if (!session || !session.user) {
-            window.location.href = 'https://webguruji.online/login.html?redirect=' + encodeURIComponent(window.location.href);
+            window.location.href = 'https://www.webguruji.online/login.html?redirect=' + encodeURIComponent(window.location.href);
             return;
         }
 
