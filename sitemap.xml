@@ -1,177 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
         http://www.google.com/schemas/sitemap-image/1.1
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
-
-  <!-- ============================================================ -->
-  <!-- HarshGuruJi App Store — Official Software & Games Subdomain   -->
-  <!-- Website Name: HarshGuruJi                                    -->
-  <!-- Main URL: https://www.webguruji.online                       -->
-  <!-- Subdomain URL: https://store.webguruji.online/               -->
-  <!-- ============================================================ -->
-
-  <!-- STORE HOMEPAGE -->
   <url>
     <loc>https://store.webguruji.online/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://store.webguruji.online/harshlogo.png</image:loc>
-      <image:title>HarshGuruJi App Store Logo</image:title>
-      <image:caption>HarshGuruJi official app store for Android APKs, PC software, and games</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://store.webguruji.online/logo-512.png</image:loc>
-      <image:title>HarshGuruJi Store 512 Icon</image:title>
-      <image:caption>HarshGuruJi Store brand icon</image:caption>
-    </image:image>
   </url>
-
-  <!-- STORE LISTING (Browse All Apps & Software) -->
   <url>
     <loc>https://store.webguruji.online/store.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://store.webguruji.online/harshlogo.png</image:loc>
-      <image:title>HarshGuruJi Store — Browse All APKs and Software</image:title>
-      <image:caption>Complete catalogue of verified Android APKs and Windows applications on HarshGuruJi</image:caption>
-    </image:image>
+    <priority>1.0</priority>
   </url>
-
-  <!-- APP DETAIL HUB -->
   <url>
     <loc>https://store.webguruji.online/store-detail.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/app.html</loc>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
-
-  <!-- FOUNDER & OWNER OFFICIAL PROFILE -->
   <url>
     <loc>https://store.webguruji.online/owner.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://store.webguruji.online/harshlogo.png</image:loc>
-      <image:title>Harsh Patel (HarshGuruJi) — Platform Founder</image:title>
-      <image:caption>Official founder profile, achievements, and social channels of HarshGuruJi</image:caption>
-    </image:image>
+    <priority>0.90</priority>
   </url>
-
-  <!-- TOP FEATURED APP DEEP LINKS (Search Console Indexable) -->
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=chess</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=chatbase</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=hp-tube</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=system-service</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=perplexity-ai-installer</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=bluestacks-installer</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=aurora-store</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=comet</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-    <image:image>
-      <image:loc>https://store.webguruji.online/comet-logo.png</image:loc>
-      <image:title>Comet Desktop Utility</image:title>
-      <image:caption>Download Comet desktop utility installer for Windows PC on HarshGuruJi Store</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=hermes-ai-agent</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://store.webguruji.online/hermes-logo.png</image:loc>
-      <image:title>Hermes AI Agent for PC</image:title>
-      <image:caption>Download Hermes AI Agent desktop assistant for Windows on HarshGuruJi Store</image:caption>
-    </image:image>
-  </url>
-
-  <!-- STORE DATA FEED (JSON Catalog for Crawlers & APIs) -->
-  <url>
-    <loc>https://store.webguruji.online/data/apps.json</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- STORE DOWNLOAD & PWA INSTALL PAGE -->
-  <url>
-    <loc>https://store.webguruji.online/app.html</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- AUTHENTICATION PAGES -->
   <url>
     <loc>https://store.webguruji.online/login.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://store.webguruji.online/signup.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://store.webguruji.online/forgot-password.html</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
+    <loc>https://store.webguruji.online/store-detail.html?slug=chess</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://store.webguruji.online/reset-password.html</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
+    <loc>https://store.webguruji.online/store-detail.html?slug=chatbase</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
-
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=hp-tube</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=system-service</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=aurora-store</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=perplexity-ai-installer</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=bluestacks-installer</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=comet</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=hermes-ai-agent</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://store.webguruji.online/data/apps.json</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.80</priority>
+  </url>
 </urlset>
