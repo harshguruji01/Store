@@ -8,6 +8,8 @@ Allow: /owner.html
 Allow: /login.html
 Allow: /signup.html
 Allow: /data/apps.json
+Allow: /harshguruji-store-apps.webp
+Allow: /*.webp$
 Disallow: /admin*
 Disallow: /dashboard.html
 Disallow: /settings.html
@@ -15,6 +17,7 @@ Disallow: /reset-password.html
 Disallow: /forgot-password.html
 
 Sitemap: https://store.webguruji.online/sitemap.xml
+Sitemap: https://webguruji.online/sitemap-images.xml
 Sitemap: https://store.webguruji.online/sitemap_index.xml
 Sitemap: https://www.webguruji.online/sitemap_index.xml
 Sitemap: https://www.webguruji.online/sitemap.xml

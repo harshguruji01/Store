@@ -8,15 +8,25 @@
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
   <url>
     <loc>https://store.webguruji.online/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/harshguruji-store-apps.webp</image:loc>
+      <image:title>HarshGuruJi Verified Software &amp; APK Store</image:title>
+      <image:caption>Curated marketplace for verified Android APKs, GuruTube streaming app, Comet browser, and daily utilities with direct secure downloads.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://store.webguruji.online/store.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/harshguruji-store-apps.webp</image:loc>
+      <image:title>HarshGuruJi Verified Apps and Software Repository</image:title>
+      <image:caption>Download verified Android APKs, PC software, Chess game, and tools on HarshGuruJi Store.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://store.webguruji.online/store-detail.html</loc>
