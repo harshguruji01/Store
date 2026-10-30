@@ -5,22 +5,19 @@ Allow: /store.html
 Allow: /store-detail.html
 Allow: /app.html
 Allow: /owner.html
-Allow: /login.html
-Allow: /signup.html
 Allow: /data/apps.json
 Allow: /harshguruji-store-apps.webp
 Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
 Disallow: /admin*
 Disallow: /dashboard.html
 Disallow: /settings.html
 Disallow: /reset-password.html
 Disallow: /forgot-password.html
+Disallow: /login.html
+Disallow: /signup.html
 
 Sitemap: https://store.webguruji.online/sitemap.xml
-Sitemap: https://webguruji.online/sitemap-images.xml
 Sitemap: https://store.webguruji.online/sitemap_index.xml
-Sitemap: https://www.webguruji.online/sitemap_index.xml
 Sitemap: https://www.webguruji.online/sitemap.xml
-Sitemap: https://books.webguruji.online/sitemap.xml
-Sitemap: https://chat.webguruji.online/sitemap.xml
-Sitemap: https://ai.webguruji.online/sitemap.xml

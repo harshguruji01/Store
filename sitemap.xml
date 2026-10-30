@@ -6,116 +6,264 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
         http://www.google.com/schemas/sitemap-image/1.1
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- ═══════════════════ CORE STORE PAGES ═══════════════════ -->
   <url>
     <loc>https://store.webguruji.online/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://store.webguruji.online/harshguruji-store-apps.webp</image:loc>
-      <image:title>HarshGuruJi Verified Software &amp; APK Store</image:title>
-      <image:caption>Curated marketplace for verified Android APKs, GuruTube streaming app, Comet browser, and daily utilities with direct secure downloads.</image:caption>
+      <image:title>GuruStore - Verified Software, Games &amp; Android APK Store</image:title>
+      <image:caption>Curated marketplace for verified Android APKs, GuruTube streaming app, Comet browser, and daily utilities with direct secure downloads on GuruStore.</image:caption>
     </image:image>
   </url>
+
   <url>
     <loc>https://store.webguruji.online/store.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://store.webguruji.online/harshguruji-store-apps.webp</image:loc>
-      <image:title>HarshGuruJi Verified Apps and Software Repository</image:title>
-      <image:caption>Download verified Android APKs, PC software, Chess game, and tools on HarshGuruJi Store.</image:caption>
+      <image:title>GuruStore Catalog - Verified Apps and Software Repository</image:title>
+      <image:caption>Download verified Android APKs, PC software, Chess game, and developer tools on GuruStore.</image:caption>
     </image:image>
   </url>
+
   <url>
     <loc>https://store.webguruji.online/store-detail.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
+
   <url>
     <loc>https://store.webguruji.online/app.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
+
   <url>
     <loc>https://store.webguruji.online/owner.html</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/login.html</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/signup.html</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=chess</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=chatbase</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=hp-tube</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=system-service</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/harshlogo.png</image:loc>
+      <image:title>Harsh Patel - Founder and Creator of GuruStore</image:title>
+      <image:caption>Founder profile, engineering achievements, and store publisher identity.</image:caption>
+    </image:image>
   </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=aurora-store</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=perplexity-ai-installer</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=bluestacks-installer</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=comet</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://store.webguruji.online/store-detail.html?slug=hermes-ai-agent</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
+
   <url>
     <loc>https://store.webguruji.online/data/apps.json</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
+  </url>
+
+  <!-- ═══════════════════ CATEGORY DIRECTORIES ═══════════════════ -->
+  <url>
+    <loc>https://store.webguruji.online/store.html?category=Game</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/store.html?category=Apps</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/store.html?category=Software</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/store.html?category=AI</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ═══════════════════ ALL APPS & GAMES CATALOG ITEMS ═══════════════════ -->
+  <!-- App: Chess (chess) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=chess</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/chess-logo.png</image:loc>
+      <image:title>Chess - Chess Prince MOD APK - GuruStore</image:title>
+      <image:caption>Play and download Chess by Chess Prince with full MOD features unlocked.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=chess</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: ChatBase (chatbase) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=chatbase</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/chatbase-logo.png</image:loc>
+      <image:title>ChatBase AI Intelligent Assistant - GuruStore</image:title>
+      <image:caption>HarshGuruJi ChatBase AI intelligent assistant application for Android.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=chatbase</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: GuruTube (hp-tube) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=hp-tube</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/hp-tube-logo.png</image:loc>
+      <image:title>GuruTube - High Speed Video Streaming - GuruStore</image:title>
+      <image:caption>GuruTube media streaming application with high-speed video playback.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=hp-tube</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: System Service (system-service) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=system-service</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/system-service-logo.jpg</image:loc>
+      <image:title>System Service Android Optimization Utility - GuruStore</image:title>
+      <image:caption>Android system maintenance and background optimization utility.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=system-service</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: Aurora Store (aurora-store) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=aurora-store</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/aurora-store-logo.png</image:loc>
+      <image:title>Aurora Store - Open Source Google Play Alternative - GuruStore</image:title>
+      <image:caption>Open-source privacy-focused Google Play Store alternative client.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=aurora-store</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: Perplexity AI Installer (perplexity-ai-installer) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=perplexity-ai-installer</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/perplexity-logo.png</image:loc>
+      <image:title>Perplexity AI Desktop Installer for Windows - GuruStore</image:title>
+      <image:caption>Official desktop AI research and conversational answer engine for Windows.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=perplexity-ai-installer</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: BlueStacks Installer (bluestacks-installer) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=bluestacks-installer</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/bluestacks-logo.png</image:loc>
+      <image:title>BlueStacks 5 - Fast Android Gaming Emulator for PC - GuruStore</image:title>
+      <image:caption>Fast Android emulator for Windows PC to run mobile APK apps and games.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=bluestacks-installer</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: Comet (comet) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=comet</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/comet-logo.png</image:loc>
+      <image:title>Comet Desktop Utility &amp; Package Manager - GuruStore</image:title>
+      <image:caption>Fast, modern desktop utility and software installer.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=comet</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- App: Hermes AI Agent (hermes-ai-agent) -->
+  <url>
+    <loc>https://store.webguruji.online/store-detail.html?slug=hermes-ai-agent</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://store.webguruji.online/hermes-logo.png</image:loc>
+      <image:title>Hermes AI Agent - Autonomous PC Assistant - GuruStore</image:title>
+      <image:caption>Advanced local and cloud AI agent assistant for PC.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://store.webguruji.online/app.html?slug=hermes-ai-agent</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
   </url>
 </urlset>

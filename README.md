@@ -1,6 +1,6 @@
 # HarshGuruJi Application & Software Store
 
-Official repository for **HarshGuruJi Store** ([store.webguruji.online](https://store.webguruji.online/)).
+Official repository for **GuruStore** ([store.webguruji.online](https://store.webguruji.online/)).
 
 ## Features
 - **Real-Time Database Driven**: Powered 100% by Supabase (store_apps table).
