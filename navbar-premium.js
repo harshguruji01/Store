@@ -1,3 +1,4 @@
+// Early bounce check removed to prevent premature redirect before login
 // Global early PWA install prompt capture across all pages
 if (typeof window !== 'undefined' && !window.__hgPromptCaptured) {
   window.__hgPromptCaptured = true;
@@ -81,30 +82,27 @@ document.addEventListener('DOMContentLoaded', () => {
                   window.location.hostname === 'localhost' || 
                   window.location.hostname === '127.0.0.1';
 
-  const homeUrl = isLocal ? `${prefix}index.html` : 'https://www.webguruji.online/';
+  const homeUrl = isLocal ? `${prefix}index.html` : 'https://webguruji.online/';
   const booksUrl = isBooksPage ? (navFile === 'books.html' ? '#top' : `${prefix}books.html`) : (isLocal ? `${prefix}books.html` : 'https://books.webguruji.online/');
   const storeUrl = isStorePage ? (navFile === 'store.html' ? '#top' : `${prefix}store.html`) : (isLocal ? `${prefix}store.html` : 'https://store.webguruji.online/');
   const chatUrl = isLocal ? `${prefix}chat.html` : 'https://chat.webguruji.online/';
 
   // Universal Navigation & Cross-Subdomain Central Authentication Targets
-  const portalUrl = (isStorePage || isBooksPage) && !isLocal ? 'https://www.webguruji.online/' : prefix;
+  const portalUrl = (isStorePage || isBooksPage) && !isLocal ? 'https://webguruji.online/' : prefix;
   const currentFullUrl = typeof window !== 'undefined' ? window.location.href : '';
   const currentPathWithSearch = typeof window !== 'undefined' ? (window.location.pathname.split('/').pop() + window.location.search) : '';
-  // Central Login Target: ALWAYS points to the main 'site' folder / https://www.webguruji.online/login.html
+  // Central Login Target: ALWAYS points to https://login.webguruji.online with current page redirect
   let centralLoginBase;
-  if (!isStorePage && !isBooksPage) {
-    centralLoginBase = `${prefix}login.html`;
-  } else if (window.location.protocol === 'file:') {
-    centralLoginBase = '../../site/login.html';
+  if (isLocal || window.location.protocol === 'file:') {
+    centralLoginBase = (window.location.protocol === 'file:' && (isStorePage || isBooksPage)) ? '../../site/login.html' : `${prefix}login.html`;
   } else {
-    centralLoginBase = 'https://www.webguruji.online/login.html';
+    centralLoginBase = 'https://login.webguruji.online';
   }
 
-  const loginUrl = (isStorePage || isBooksPage)
-    ? `${centralLoginBase}?redirect=${encodeURIComponent(currentFullUrl)}`
-    : `${centralLoginBase}${navFile && navFile !== 'index.html' && navFile !== 'login.html' && !navFile.includes('signup') ? '?redirect=' + encodeURIComponent(currentPathWithSearch) : ''}`;
-  const dashUrl = (isBooksPage && !isLocal) ? 'https://www.webguruji.online/dashboard.html' : `${prefix}dashboard.html`;
-  const settingsUrl = (isBooksPage && !isLocal) ? 'https://www.webguruji.online/settings.html' : `${prefix}settings.html`;
+  const safeReturnUrl = currentFullUrl || (typeof window !== 'undefined' ? (window.location.origin + window.location.pathname + window.location.search) : '');
+  const loginUrl = `${centralLoginBase}?redirect=${encodeURIComponent(safeReturnUrl)}`;
+  const dashUrl = (isBooksPage && !isLocal) ? 'https://webguruji.online/dashboard.html' : `${prefix}dashboard.html`;
+  const settingsUrl = (isBooksPage && !isLocal) ? 'https://webguruji.online/settings.html' : `${prefix}settings.html`;
 
   // Build Desktop Nav Items
   let desktopNavListHTML = '';
@@ -295,79 +293,153 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   } else if (isStorePage) {
     desktopNavListHTML = `
+      <!-- ReUI / 21st.dev Style Navigation Menu Trigger with Mega Menu Panel -->
+      <li class="hg-nav-item hg-has-dropdown hg-reui-nav-item" id="nav-item-store-getting-started">
+        <button type="button" class="hg-nav-link hg-reui-trigger active" id="nav-link-store-main" aria-expanded="false">
+          <span>🛍️ GuruStore</span>
+          <svg class="hg-reui-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
+        <!-- ReUI / 21st.dev Card Panel with Description Previews -->
+        <div class="hg-dropdown hg-reui-mega-panel">
+          <div class="hg-reui-mega-grid">
+            <a href="${storeUrl}" class="hg-reui-card" id="reui-card-all">
+              <div class="hg-reui-card-icon" style="background:rgba(56,189,248,0.12); color:#38bdf8;">📦</div>
+              <div class="hg-reui-card-body">
+                <div class="hg-reui-card-title">GuruStore Catalog</div>
+                <div class="hg-reui-card-desc">Browse complete verified inventory of games, applications, and tools.</div>
+              </div>
+            </a>
+            <a href="#sec-games" class="hg-reui-card" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">
+              <div class="hg-reui-card-icon" style="background:rgba(236,72,153,0.12); color:#f472b6;">🎮</div>
+              <div class="hg-reui-card-body">
+                <div class="hg-reui-card-title">Web &amp; PC Games</div>
+                <div class="hg-reui-card-desc">Play instant browser games like Chess, Snake, and Tic-Tac-Toe.</div>
+              </div>
+            </a>
+            <a href="#sec-android" class="hg-reui-card" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Android'); return false;">
+              <div class="hg-reui-card-icon" style="background:rgba(16,185,129,0.12); color:#34d399;">📱</div>
+              <div class="hg-reui-card-body">
+                <div class="hg-reui-card-title">Android APK Releases</div>
+                <div class="hg-reui-card-desc">Direct high-speed downloads scanned across multi-engine antivirus.</div>
+              </div>
+            </a>
+            <a href="#store-sections-view" class="hg-reui-card" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Windows'); return false;">
+              <div class="hg-reui-card-icon" style="background:rgba(99,102,241,0.12); color:#818cf8;">💻</div>
+              <div class="hg-reui-card-body">
+                <div class="hg-reui-card-title">Windows Software</div>
+                <div class="hg-reui-card-desc">Verified desktop utilities, emulators, and productive installers.</div>
+              </div>
+            </a>
+          </div>
+          <div class="hg-reui-mega-footer">
+            <span class="hg-reui-footer-label">🛡️ 100% Cryptographically Verified &amp; Sandboxed Downloads</span>
+            <a href="${portalUrl}free-tools.html" class="hg-reui-footer-link">Developer Tools Hub &rarr;</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- ReUI Secondary Trigger: Categories -->
+      <li class="hg-nav-item hg-has-dropdown hg-reui-nav-item" id="nav-item-categories">
+        <button type="button" class="hg-nav-link hg-reui-trigger" id="nav-link-categories" aria-expanded="false">
+          <span>Categories</span>
+          <svg class="hg-reui-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
+        <div class="hg-dropdown hg-reui-dropdown-panel">
+          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Featured'); return false;">
+            <span class="reui-link-icon">⭐</span>
+            <div class="reui-link-text">
+              <span class="reui-link-title">Editor's Choice</span>
+              <span class="reui-link-desc">Featured handpicked apps &amp; games</span>
+            </div>
+          </a>
+          <a href="#sec-games" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">
+            <span class="reui-link-icon">🎮</span>
+            <div class="reui-link-text">
+              <span class="reui-link-title">Games &amp; Play</span>
+              <span class="reui-link-desc">Interactive web games &amp; brain puzzles</span>
+            </div>
+          </a>
+          <a href="#sec-android" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Apps'); return false;">
+            <span class="reui-link-icon">📱</span>
+            <div class="reui-link-text">
+              <span class="reui-link-title">Mobile Applications</span>
+              <span class="reui-link-desc">Android APK packages &amp; utilities</span>
+            </div>
+          </a>
+          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Software'); return false;">
+            <span class="reui-link-icon">💻</span>
+            <div class="reui-link-text">
+              <span class="reui-link-title">Desktop Software</span>
+              <span class="reui-link-desc">Windows EXE &amp; utility tools</span>
+            </div>
+          </a>
+          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'AI'); return false;">
+            <span class="reui-link-icon">🤖</span>
+            <div class="reui-link-text">
+              <span class="reui-link-title">AI &amp; Productivity</span>
+              <span class="reui-link-desc">Next-gen AI assistant tools</span>
+            </div>
+          </a>
+          <div class="hg-dropdown-divider"></div>
+          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'All'); return false;">
+            <span class="reui-link-icon">🔄</span>
+            <div class="reui-link-text">
+              <span class="reui-link-title">View All Releases</span>
+              <span class="reui-link-desc">Clear filters and show full inventory</span>
+            </div>
+          </a>
+        </div>
+      </li>
+
+      <!-- ReUI Standard Direct Links -->
       <li class="hg-nav-item"><a href="${homeUrl}" class="hg-nav-link" id="nav-link-home">Home</a></li>
-      <li class="hg-nav-item"><a href="${storeUrl}" class="hg-nav-link active" id="nav-link-store">🛍️ Store Home</a></li>
-      <li class="hg-nav-item"><a href="#sec-games" class="hg-nav-link" id="nav-link-games" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">🎮 MOD Games</a></li>
-      <li class="hg-nav-item"><a href="#sec-android" class="hg-nav-link" id="nav-link-apks" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Android'); return false;">📱 Android APKs</a></li>
-      <li class="hg-nav-item"><a href="#store-sections-view" class="hg-nav-link" id="nav-link-software" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Windows'); return false;">💻 Windows (PC)</a></li>
-      <li class="hg-nav-item hg-has-dropdown" id="nav-item-categories">
-        <a href="#" class="hg-nav-link" id="nav-link-categories" onclick="return false;">📂 Categories <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></a>
-        <div class="hg-dropdown" style="min-width:240px;">
-          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Featured'); return false;">⭐ Editor's Choice</a>
-          <a href="#sec-games" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">🎮 Games &amp; Entertainment</a>
-          <a href="#sec-android" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Apps'); return false;">📱 Mobile Applications</a>
-          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Software'); return false;">💻 Windows Software</a>
-          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'AI'); return false;">🤖 AI &amp; Web Apps</a>
-          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Education'); return false;">📚 Education Apps</a>
-          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Utility'); return false;">⚙️ Utilities &amp; Productivity</a>
-          <div class="hg-dropdown-divider"></div>
-          <a href="#store-sections-view" class="hg-dropdown-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'All'); return false;">🔄 View All Releases</a>
-        </div>
-      </li>
-      <li class="hg-nav-item"><a href="${booksUrl}" class="hg-nav-link" id="nav-link-books" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">📚 Books</a></li>
-      <li class="hg-nav-item hg-has-dropdown" id="nav-item-more">
-        <a href="#" class="hg-nav-link" id="nav-link-more" onclick="return false;">More <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></a>
-        <div class="hg-dropdown">
-          <a href="${chatUrl}" class="hg-dropdown-link" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">💬 Community Chat</a>
-          <a href="${portalUrl}daily-special.html" class="hg-dropdown-link">🌟 Daily Special</a>
-          <a href="${portalUrl}free-tools.html" class="hg-dropdown-link">🛠️ Tools Hub</a>
-          <a href="${portalUrl}ai-hub.html" class="hg-dropdown-link">🤖 AI Hub</a>
-          <a href="${portalUrl}gaming-hub.html" class="hg-dropdown-link">🎮 Gaming Hub</a>
-          <a href="${portalUrl}contributor.html" class="hg-dropdown-link">🤝 Contributor</a>
-          <div class="hg-dropdown-divider"></div>
-          <a href="${portalUrl}about.html" class="hg-dropdown-link">About Us</a>
-          <a href="${portalUrl}contact.html" class="hg-dropdown-link">Contact</a>
-          <a href="${portalUrl}privacy-policy.html" class="hg-dropdown-link">Privacy Policy</a>
-          <a href="${portalUrl}terms-and-conditions.html" class="hg-dropdown-link">Terms &amp; Conditions</a>
-        </div>
-      </li>
+      <li class="hg-nav-item"><a href="${booksUrl}" class="hg-nav-link" id="nav-link-books" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">Books</a></li>
+      <li class="hg-nav-item"><a href="${chatUrl}" class="hg-nav-link" id="nav-link-chat" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">Chat</a></li>
+      <li class="hg-nav-item"><a href="${portalUrl}free-tools.html" class="hg-nav-link" id="nav-link-tools">Tools</a></li>
     `;
 
     mobileNavListHTML = `
-      <li><a href="${homeUrl}" class="hg-mobile-link" id="mob-link-home">🏠 Home</a></li>
-      <li><a href="${storeUrl}" class="hg-mobile-link active" id="mob-link-store">🛍️ Store Catalog</a></li>
-      <li><a href="#sec-games" class="hg-mobile-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">🎮 MOD Games</a></li>
-      <li><a href="#sec-android" class="hg-mobile-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Android'); return false;">📱 Android APKs</a></li>
-      <li><a href="#store-sections-view" class="hg-mobile-link" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Windows'); return false;">💻 Windows (PC)</a></li>
-      <li class="hg-mobile-item hg-has-accordion" id="mob-item-store-cats">
-        <button type="button" class="hg-mobile-accordion-toggle">📂 All Store Categories <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></button>
+      <li>
+        <a href="${storeUrl}" class="hg-mobile-link active" id="mob-link-store">
+          <span>🛍️ GuruStore</span>
+          <span style="font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; padding:2px 8px; border-radius:12px; font-weight:700;">LIVE</span>
+        </a>
+      </li>
+
+      <li class="hg-mobile-item hg-has-accordion open" id="mob-item-store-cats">
+        <button type="button" class="hg-mobile-accordion-toggle">
+          <span>📂 Store Categories</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
         <div class="hg-mobile-accordion-content">
-          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Featured'); return false;">⭐ Editor's Choice</a>
-          <a href="#sec-games" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">🎮 Games &amp; Entertainment</a>
-          <a href="#sec-android" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Apps'); return false;">📱 Mobile Applications</a>
-          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Software'); return false;">💻 Windows Software</a>
-          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'AI'); return false;">🤖 AI &amp; Web Apps</a>
-          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Education'); return false;">📚 Education Apps</a>
-          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Utility'); return false;">⚙️ Utilities &amp; Productivity</a>
-          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'All'); return false;">🔄 View All Releases</a>
+          <a href="#sec-games" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">
+            <div style="font-weight:600; color:#fff;">🎮 Web Games</div>
+            <div style="font-size:0.78rem; color:#94a3b8;">Chess, Snake, Tic-Tac-Toe &amp; Arcade</div>
+          </a>
+          <a href="#sec-android" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Android'); return false;">
+            <div style="font-weight:600; color:#fff;">📱 Android APKs</div>
+            <div style="font-size:0.78rem; color:#94a3b8;">Direct verified APK installers</div>
+          </a>
+          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Windows'); return false;">
+            <div style="font-weight:600; color:#fff;">💻 Windows (PC)</div>
+            <div style="font-size:0.78rem; color:#94a3b8;">Desktop software &amp; emulators</div>
+          </a>
+          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'AI'); return false;">
+            <div style="font-weight:600; color:#fff;">🤖 AI &amp; Web Apps</div>
+            <div style="font-size:0.78rem; color:#94a3b8;">ChatBase, AI Hub &amp; productive tools</div>
+          </a>
+          <a href="#store-sections-view" class="hg-mobile-sublink" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'All'); return false;">
+            <div style="font-weight:600; color:#38bdf8;">🔄 View All Releases</div>
+            <div style="font-size:0.78rem; color:#94a3b8;">Browse complete catalog</div>
+          </a>
         </div>
       </li>
-      <li><a href="${booksUrl}" class="hg-mobile-link" id="mob-link-books" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">📚 NCERT Books</a></li>
-      <li class="hg-mobile-item hg-has-accordion" id="mob-item-more">
-        <button type="button" class="hg-mobile-accordion-toggle">More Portal Services <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></button>
-        <div class="hg-mobile-accordion-content">
-          <a href="${chatUrl}" class="hg-mobile-sublink" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">💬 Community Chat</a>
-          <a href="${portalUrl}daily-special.html" class="hg-mobile-sublink">🌟 Daily Special</a>
-          <a href="${portalUrl}free-tools.html" class="hg-mobile-sublink">🛠️ Tools Hub</a>
-          <a href="${portalUrl}ai-hub.html" class="hg-mobile-sublink">🤖 AI Hub</a>
-          <a href="${portalUrl}gaming-hub.html" class="hg-mobile-sublink">🎮 Gaming Hub</a>
-          <a href="${portalUrl}contributor.html" class="hg-mobile-sublink">🤝 Contributor</a>
-          <a href="${portalUrl}about.html" class="hg-mobile-sublink">About Us</a>
-          <a href="${portalUrl}contact.html" class="hg-mobile-sublink">Contact</a>
-          <a href="${portalUrl}privacy-policy.html" class="hg-mobile-sublink">Privacy Policy</a>
-          <a href="${portalUrl}terms-and-conditions.html" class="hg-mobile-sublink">Terms &amp; Conditions</a>
-        </div>
-      </li>
+
+      <li><a href="${homeUrl}" class="hg-mobile-link" id="mob-link-home">🏠 HarshGuruJi Home</a></li>
+      <li><a href="${booksUrl}" class="hg-mobile-link" id="mob-link-books" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">📚 NCERT Books Library</a></li>
+      <li><a href="${chatUrl}" class="hg-mobile-link" id="mob-link-chat" target="${isLocal ? '_self' : '_blank'}" rel="noopener noreferrer">💬 Community Chat</a></li>
+      <li><a href="${portalUrl}free-tools.html" class="hg-mobile-link">🛠️ Free Developer Tools</a></li>
+      <li><a href="${portalUrl}contact.html" class="hg-mobile-link">📬 Contact &amp; Support</a></li>
     `;
 
     bottomBarHTML = `
@@ -381,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="hg-bottom-label">Home</span>
       </a>
 
-      <a href="#sec-games" class="hg-bottom-item" id="bottom-nav-games" title="MOD Games" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">
+      <a href="#sec-games" class="hg-bottom-item" id="bottom-nav-games" title="Web Games" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('category', 'Game'); return false;">
         <span class="hg-bottom-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="6 12 10 8 14 12 10 16 6 12"></polygon>
@@ -400,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
         </span>
-        <span class="hg-bottom-label">Store</span>
+        <span class="hg-bottom-label">GuruStore</span>
       </a>
 
       <a href="#sec-android" class="hg-bottom-item" id="bottom-nav-apks" title="Android APKs" onclick="window.selectStoreNavFilter && window.selectStoreNavFilter('platform', 'Android'); return false;">
@@ -423,16 +495,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="hg-bottom-label">Books</span>
       </a>
 
-      <a href="${loginUrl}" class="hg-bottom-item" id="bottom-nav-auth" title="Profile / Account">
-        <span class="hg-bottom-icon" id="bottom-auth-icon-wrap">
-          <svg id="bottom-auth-default-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
+      <a href="${portalUrl}free-tools.html" class="hg-bottom-item" id="bottom-nav-tools" title="Free Developer Tools">
+        <span class="hg-bottom-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
           </svg>
-          <img id="bottom-auth-avatar" src="${prefix}logo.png" alt="Profile" style="display:none;" />
-          <span id="bottom-golden-tick" class="bottom-golden-tick" style="display:none;">✓</span>
         </span>
-        <span class="hg-bottom-label" id="bottom-auth-label">Login</span>
+        <span class="hg-bottom-label">Tools</span>
       </a>
     `;
   } else {
@@ -572,7 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
     brandLogoHTML = `
       <a href="${storeUrl}" class="hg-nav-logo" aria-label="GuruStore Home">
         <img src="${prefix}logo.png" alt="GuruStore Logo" fetchpriority="high">
-        <span class="hg-brand-text">HarshGuruJi <span style="font-size:0.68rem; color:#38bdf8; font-weight:800; border:1px solid rgba(56,189,248,0.4); padding:1px 6px; border-radius:6px; margin-left:4px; vertical-align:middle; text-transform:uppercase;">STORE</span></span>
+        <span class="hg-brand-text">Guru<span style="font-size:0.68rem; color:#38bdf8; font-weight:800; border:1px solid rgba(56,189,248,0.4); padding:1px 6px; border-radius:6px; margin-left:4px; vertical-align:middle; text-transform:uppercase;">STORE</span></span>
       </a>
     `;
   } else {
@@ -617,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
           
           <!-- Auth (Dynamic via JS) -->
-          <a href="${loginUrl}" id="hg-login-btn" class="hg-btn hg-btn-primary">Login</a>
+          ${isStorePage ? '' : `<a href="${loginUrl}" id="hg-login-btn" class="hg-btn hg-btn-primary">Login</a>`}
 
           <!-- Notifications Bell & Feedback Dropdown (For Logged In Users) -->
           <div class="hg-notif-container" id="hg-notif-container" style="display:none;">
@@ -648,21 +717,14 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           
           <div class="hg-user-menu" id="hg-user-profile" style="display:none;">
-            <div class="hg-user-trigger" tabindex="0" role="button" aria-haspopup="true">
+            <button type="button" class="hg-user-trigger" id="hg-user-trigger-btn" aria-label="User Account Menu" aria-haspopup="dialog" aria-expanded="false" title="Account Menu">
               <div class="hg-avatar-wrap" id="hg-user-avatar-wrap">
-                <img src="${prefix}logo.png" alt="User" id="hg-user-avatar">
+                <img src="${prefix}logo.png" alt="User Profile" id="hg-user-avatar">
               </div>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
-            </div>
-            <div class="hg-dropdown hg-dropdown-right">
-              <a href="${dashUrl}" class="hg-dropdown-link">Dashboard</a>
-              <a href="${settingsUrl}" class="hg-dropdown-link">Settings</a>
-              <div class="hg-dropdown-divider"></div>
-              <button id="hg-logout-btn" class="hg-dropdown-link" style="width:100%; text-align:left; border:none; background:none; cursor:pointer; font-family:inherit;">Logout</button>
-            </div>
+            </button>
           </div>
 
-          <!-- Mobile Hamburger Drawer Trigger -->
+<!-- Mobile Hamburger Drawer Trigger -->
           <button type="button" class="hg-hamburger" id="hg-hamburger" aria-label="Open Navigation Menu" aria-expanded="false">
             <span></span>
             <span></span>
@@ -682,6 +744,133 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </header>
 
+    <!-- 21st.dev Account Menu Sidebar Drawer (@lavikatiyar/components/menu) -->
+    <div class="hg-account-overlay" id="hg-account-overlay" style="display:none;" aria-hidden="true"></div>
+    <aside class="hg-account-drawer" id="hg-account-drawer" aria-label="User Account Sidebar" aria-hidden="true">
+      <div class="hg-drawer-header-bar">
+        <span class="hg-drawer-heading">Account</span>
+        <button type="button" class="hg-drawer-close-btn" id="hg-drawer-close" aria-label="Close Account Menu" title="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hg-drawer-user-card">
+        <div class="hg-drawer-avatar-wrap">
+          <img src="${prefix}logo.png" alt="User" id="hg-drawer-avatar" class="hg-drawer-avatar">
+          <span class="golden-tick-badge" id="hg-drawer-golden-tick" style="display:none;" title="Verified Contributor">✓</span>
+        </div>
+        <div class="hg-drawer-user-info">
+          <div class="hg-drawer-name-row">
+            <div class="hg-drawer-name" id="hg-drawer-name">User</div>
+            <span class="hg-drawer-badge" id="hg-drawer-badge">Member</span>
+          </div>
+          <div class="hg-drawer-email" id="hg-drawer-email">user@webguruji.online</div>
+        </div>
+      </div>
+
+      <div class="hg-drawer-divider"></div>
+
+      <nav class="hg-drawer-nav">
+        <!-- Dashboard & Overview -->
+        <a href="${dashUrl}" class="hg-drawer-link">
+          <span class="hg-drawer-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="5" rx="1.5"></rect>
+              <rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+              <rect x="3" y="16" width="7" height="5" rx="1.5"></rect>
+            </svg>
+          </span>
+          <span class="hg-drawer-text">Dashboard</span>
+        </a>
+
+        <!-- My orders -->
+        <a href="${dashUrl}#orders" class="hg-drawer-link">
+          <span class="hg-drawer-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path>
+              <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+              <circle cx="7" cy="18" r="2"></circle>
+              <circle cx="17" cy="18" r="2"></circle>
+            </svg>
+          </span>
+          <span class="hg-drawer-text">My orders</span>
+        </a>
+
+        <!-- Reviews -->
+        <a href="${portalUrl}contact.html#feedback" class="hg-drawer-link">
+          <span class="hg-drawer-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </span>
+          <span class="hg-drawer-text">Reviews</span>
+        </a>
+
+        <!-- Delivery addresses -->
+        <a href="${dashUrl}#addresses" class="hg-drawer-link">
+          <span class="hg-drawer-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </span>
+          <span class="hg-drawer-text">Delivery addresses</span>
+        </a>
+
+        <!-- Recently viewed -->
+        <a href="${dashUrl}#recent" class="hg-drawer-link">
+          <span class="hg-drawer-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </span>
+          <span class="hg-drawer-text">Recently viewed</span>
+        </a>
+
+        <!-- Favorite items -->
+        <a href="${dashUrl}#favorites" class="hg-drawer-link">
+          <span class="hg-drawer-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </span>
+          <span class="hg-drawer-text">Favorite items</span>
+        </a>
+
+        <div class="hg-drawer-nav-spacer"></div>
+
+        <!-- Settings -->
+        <a href="${settingsUrl}" class="hg-drawer-link">
+          <span class="hg-drawer-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </span>
+          <span class="hg-drawer-text">Settings</span>
+        </a>
+      </nav>
+
+      <div class="hg-drawer-footer">
+        <button type="button" id="hg-account-logout-btn" class="hg-drawer-logout-btn">
+          <span class="hg-drawer-logout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+          </span>
+          <span class="hg-drawer-logout-text">Log out</span>
+        </button>
+      </div>
+    </aside>
+
+
     <!-- Mobile Navigation Overlay -->
     <div class="hg-mobile-nav" id="hg-mobile-nav" aria-hidden="true">
       <div class="hg-mobile-scroll">
@@ -699,9 +888,9 @@ document.addEventListener('DOMContentLoaded', () => {
           ${mobileNavListHTML}
         </ul>
         
-        <div class="hg-mobile-footer-actions">
+        ${isStorePage ? '' : `<div class="hg-mobile-footer-actions">
            <a href="${loginUrl}" id="hg-mobile-drawer-auth" class="hg-btn hg-btn-primary" style="width: 100%; text-align:center;">Sign In to HarshGuruJi</a>
-        </div>
+        </div>`}
       </div>
     </div>
 
@@ -751,16 +940,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hg-hamburger');
   const mobileNav = document.getElementById('hg-mobile-nav');
   
-  // 1. Scroll Effect (Sticky Header shadow)
-  if (header) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        header.classList.add('hg-scrolled');
-      } else {
-        header.classList.remove('hg-scrolled');
-      }
-    }, { passive: true });
-  }
+  // 1. Static Clean Header (No scroll animation)
+  // Header background is permanently styled in navbar-premium.css
 
   // 2. Mobile Menu Toggle
   function closeMobileMenu() {
@@ -852,13 +1033,13 @@ document.addEventListener('DOMContentLoaded', () => {
         bStore.removeAttribute('rel');
       }
       if (bHome) {
-        bHome.href = 'https://www.webguruji.online/';
+        bHome.href = 'https://webguruji.online/';
         bHome.title = 'Main Portal Home';
       }
       if (bBooks) {
         bBooks.href = 'https://books.webguruji.online/';
       }
-      if (dHome) dHome.href = 'https://www.webguruji.online/';
+      if (dHome) dHome.href = 'https://webguruji.online/';
       if (dStore) {
         dStore.href = `${prefix}store.html`;
         dStore.removeAttribute('target');
@@ -875,13 +1056,13 @@ document.addEventListener('DOMContentLoaded', () => {
         bBooks.removeAttribute('rel');
       }
       if (bHome) {
-        bHome.href = 'https://www.webguruji.online/';
+        bHome.href = 'https://webguruji.online/';
         bHome.title = 'Main Portal Home';
       }
       if (bStore) {
         bStore.href = 'https://store.webguruji.online/';
       }
-      if (dHome) dHome.href = 'https://www.webguruji.online/';
+      if (dHome) dHome.href = 'https://webguruji.online/';
       if (dBooks) {
         dBooks.href = `${prefix}books.html`;
         dBooks.removeAttribute('target');
@@ -902,7 +1083,9 @@ document.addEventListener('DOMContentLoaded', () => {
       bChat?.classList.add('active');
       dChat?.classList.add('active');
       mChat?.classList.add('active');
-      document.body.classList.add('is-chat-page');
+      if (navFile === 'chat.html') {
+        document.body.classList.add('is-chat-page');
+      }
     } else if (navFile.includes('login') || navFile.includes('signup') || navFile.includes('dashboard') || navFile.includes('profile') || navFile.includes('settings')) {
       bAuth?.classList.add('active');
     } else if (navFile === 'index.html' || navFile === '' || navPath.endsWith('/')) {
@@ -1511,14 +1694,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: '💻', 
       keywords: 'technology tech computers software trends development innovation' 
     },
-    { 
-      title: 'Partner Ads & Sponsorships', 
-      desc: 'Official advertising and sponsorship partners of HarshGuruJi platform', 
-      url: 'ads.html', 
-      type: 'page', 
-      icon: '📢', 
-      keywords: 'ads partner advertising sponsor promotions partner ads' 
-    },
+    
     { 
       title: 'Privacy Policy', 
       desc: 'HarshGuruJi privacy policy, cookies, data safety and user security guidelines', 
@@ -1741,7 +1917,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if ((isStorePage || isBooksPage) && (item.url === 'login.html' || item.url.includes('login.html'))) {
         linkUrl = loginUrl;
       } else if ((isStorePage || isBooksPage) && (item.url === 'signup.html' || item.url.includes('signup.html'))) {
-        linkUrl = (window.location.protocol === 'file:') ? '../../site/signup.html' : 'https://www.webguruji.online/signup.html';
+        linkUrl = (window.location.protocol === 'file:') ? '../../site/signup.html' : 'https://webguruji.online/signup.html';
       }
 
       return `
@@ -2119,6 +2295,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Handle Auth State Changes
   const updateNavUI = (user, profile) => {
     const loginBtn = document.getElementById('hg-login-btn');
+    if (isStorePage) {
+      if (loginBtn) loginBtn.style.display = 'none';
+      const mDrawerAuth = document.getElementById('hg-mobile-drawer-auth');
+      if (mDrawerAuth) mDrawerAuth.style.display = 'none';
+    }
     const userMenu = document.getElementById('hg-user-profile');
     const userAvatar = document.getElementById('hg-user-avatar');
     const notifBox = document.getElementById('hg-notif-container');
@@ -2141,6 +2322,32 @@ document.addEventListener('DOMContentLoaded', () => {
         userAvatar.src = avatarUrl;
       }
 
+      // Populate 21st.dev Account Drawer
+      const drawerAvatar = document.getElementById('hg-drawer-avatar');
+      if (drawerAvatar) drawerAvatar.src = avatarUrl;
+      const drawerName = document.getElementById('hg-drawer-name');
+      if (drawerName) drawerName.textContent = displayName;
+      const drawerEmail = document.getElementById('hg-drawer-email');
+      if (drawerEmail) drawerEmail.textContent = user.email || '';
+      const drawerGoldenTick = document.getElementById('hg-drawer-golden-tick');
+      if (drawerGoldenTick) {
+        drawerGoldenTick.style.display = (profile && profile.golden_tick === true) ? 'flex' : 'none';
+      }
+      const drawerBadge = document.getElementById('hg-drawer-badge');
+      if (drawerBadge) {
+        if (profile && profile.golden_tick === true) {
+          drawerBadge.textContent = 'Contributor';
+          drawerBadge.style.color = '#ffd700';
+          drawerBadge.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+          drawerBadge.style.background = 'rgba(255, 215, 0, 0.12)';
+        } else {
+          drawerBadge.textContent = 'Member';
+          drawerBadge.style.color = '#ff6b4a';
+          drawerBadge.style.borderColor = 'rgba(255, 107, 74, 0.3)';
+          drawerBadge.style.background = 'rgba(255, 107, 74, 0.15)';
+        }
+      }
+
       // Update Bottom Bar Auth Tab to Profile & sync bottom sheet
       const sheetAvatar = document.getElementById('hg-bottom-sheet-avatar');
       if (sheetAvatar) sheetAvatar.src = avatarUrl;
@@ -2158,17 +2365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bottomAuthItem.onclick = (e) => {
           if (window.innerWidth <= 1024) {
             e.preventDefault();
-            const overlay = document.getElementById('hg-bottom-profile-overlay');
-            if (overlay) {
-              if (overlay.classList.contains('active')) {
-                overlay.classList.remove('active');
-                setTimeout(() => { if (!overlay.classList.contains('active')) overlay.style.display = 'none'; }, 250);
-              } else {
-                overlay.style.display = 'flex';
-                void overlay.offsetWidth;
-                overlay.classList.add('active');
-              }
-            }
+            toggleAccountDrawer();
           }
         };
       }
@@ -2212,7 +2409,8 @@ document.addEventListener('DOMContentLoaded', () => {
       syncChatUnreadBadge(user.id);
       subscribeToChatRealtimeBadge(user.id);
     } else {
-      if (loginBtn) { loginBtn.href = loginUrl; loginBtn.style.display = 'inline-flex'; }
+      if (typeof closeAccountDrawer === 'function') closeAccountDrawer();
+      if (loginBtn) { loginBtn.href = loginUrl; loginBtn.style.display = isStorePage ? 'none' : 'inline-flex'; }
       if (userMenu) userMenu.style.display = 'none';
       if (notifBox) notifBox.style.display = 'none';
       toggleNotifDropdown(false);
@@ -2296,14 +2494,141 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  
+  // --- 21st.dev Account Menu Sidebar Drawer Logic (@lavikatiyar/components/menu) ---
+  const getAccountDrawer = () => document.getElementById('hg-account-drawer');
+  const getAccountOverlay = () => document.getElementById('hg-account-overlay');
+
+  const openAccountDrawer = () => {
+    const drawer = getAccountDrawer();
+    const overlay = getAccountOverlay();
+    const trigger = document.getElementById('hg-user-trigger-btn') || document.querySelector('.hg-user-trigger');
+    if (drawer && overlay) {
+      overlay.style.display = 'block';
+      void overlay.offsetWidth;
+      overlay.classList.add('active');
+      drawer.classList.add('active');
+      drawer.setAttribute('aria-hidden', 'false');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const closeAccountDrawer = () => {
+    const drawer = getAccountDrawer();
+    const overlay = getAccountOverlay();
+    const trigger = document.getElementById('hg-user-trigger-btn') || document.querySelector('.hg-user-trigger');
+    if (drawer && overlay) {
+      drawer.classList.remove('active');
+      overlay.classList.remove('active');
+      drawer.setAttribute('aria-hidden', 'true');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        if (!overlay.classList.contains('active')) {
+          overlay.style.display = 'none';
+        }
+      }, 320);
+    }
+  };
+
+  const toggleAccountDrawer = () => {
+    const drawer = getAccountDrawer();
+    if (drawer && drawer.classList.contains('active')) {
+      closeAccountDrawer();
+    } else {
+      openAccountDrawer();
+    }
+  };
+
+  window.openHarshAccountDrawer = openAccountDrawer;
+  window.closeHarshAccountDrawer = closeAccountDrawer;
+  window.toggleHarshAccountDrawer = toggleAccountDrawer;
+
+  // Bind trigger click
+  const userTrigger = document.getElementById('hg-user-trigger-btn') || document.querySelector('.hg-user-trigger');
+  if (userTrigger) {
+    userTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleAccountDrawer();
+    });
+  }
+
+  // Bind drawer close button
+  const drawerCloseBtn = document.getElementById('hg-drawer-close');
+  if (drawerCloseBtn) {
+    drawerCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAccountDrawer();
+    });
+  }
+
+  // Bind backdrop overlay click
+  const drawerOverlay = document.getElementById('hg-account-overlay');
+  if (drawerOverlay) {
+    drawerOverlay.addEventListener('click', () => {
+      closeAccountDrawer();
+    });
+  }
+
+  // Bind escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const drawer = getAccountDrawer();
+      if (drawer && drawer.classList.contains('active')) {
+        closeAccountDrawer();
+      }
+    }
+  });
+
+  // Close drawer when clicking internal nav links
+  const drawerEl = document.getElementById('hg-account-drawer');
+  if (drawerEl) {
+    drawerEl.querySelectorAll('.hg-drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        closeAccountDrawer();
+      });
+    });
+  }
+
+  // Common logout function
+  const executeNavSignOut = async () => {
+    closeAccountDrawer();
+    const client = window.supabaseClient || (window.AuthManager && window.AuthManager.supabase);
+    if (client && client.auth) {
+      await client.auth.signOut().catch(() => {});
+    } else {
+      try {
+        const { supabase } = await import(`${prefix}js/supabase.js`);
+        await supabase.auth.signOut().catch(() => {});
+      } catch(e) {}
+    }
+    window.location.href = (isLocal || window.location.protocol === 'file:') ? (prefix + "index.html") : 'https://webguruji.online/index.html';
+  };
+
+  const accountLogoutBtn = document.getElementById('hg-account-logout-btn');
+  if (accountLogoutBtn) {
+    accountLogoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      executeNavSignOut();
+    });
+  }
+
   // Logout listener
   const logoutBtn = document.getElementById('hg-logout-btn');
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      import('./js/supabase.js').then(async ({ supabase }) => {
-        await supabase.auth.signOut();
-        window.location.href = prefix + "index.html";
-      }).catch(err => console.log('Supabase signout not available on this page.'));
+    logoutBtn.addEventListener('click', async () => {
+      const client = window.supabaseClient || (window.AuthManager && window.AuthManager.supabase);
+      if (client && client.auth) {
+        await client.auth.signOut().catch(() => {});
+      } else {
+        try {
+          const { supabase } = await import(`${prefix}js/supabase.js`);
+          await supabase.auth.signOut().catch(() => {});
+        } catch(e) {}
+      }
+      window.location.href = (isLocal || window.location.protocol === 'file:') ? (prefix + "index.html") : 'https://webguruji.online/index.html';
     });
   }
 
@@ -2312,31 +2637,51 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavUI(e.detail.user, e.detail.profile);
   });
 
-  // Check auth state immediately
-  if (window.AuthManager && window.AuthManager.currentUser) {
+  // Check auth state immediately across all pages and subdirectories
+  function checkNavAuth() {
+    if (window.AuthManager && window.AuthManager.currentUser) {
       updateNavUI(window.AuthManager.currentUser, window.AuthManager.currentProfile);
-  } else {
-      import('./js/supabase.js').then(async ({ supabase }) => {
-          const { data: { session } } = await supabase.auth.getSession();
-          if (session && session.user) {
-              import('./js/profile.js').then(async ({ getProfile }) => {
-                  const profile = await getProfile(session.user.id);
-                  updateNavUI(session.user, profile);
-              }).catch(()=>updateNavUI(session.user, null));
-          }
+      return;
+    }
+    const client = window.supabaseClient || (window.AuthManager && window.AuthManager.supabase);
+    if (client && client.auth) {
+      client.auth.getSession().then(({ data }) => {
+        const session = data && data.session;
+        if (session && session.user) {
+          import(`${prefix}js/profile.js`).then(({ getProfile }) => {
+            getProfile(session.user.id).then(profile => updateNavUI(session.user, profile));
+          }).catch(() => updateNavUI(session.user, null));
+        } else {
+          updateNavUI(null, null);
+        }
+      }).catch(() => {});
 
-          supabase.auth.onAuthStateChange(async (event, newSession) => {
-              if (newSession && newSession.user) {
-                  import('./js/profile.js').then(async ({ getProfile }) => {
-                      const profile = await getProfile(newSession.user.id);
-                      updateNavUI(newSession.user, profile);
-                  }).catch(()=>updateNavUI(newSession.user, null));
-              } else if (event === 'SIGNED_OUT') {
-                  updateNavUI(null, null);
-              }
-          });
-      }).catch(err => {
-         // Supabase not present on page, ignore
-      });
+      if (typeof client.auth.onAuthStateChange === 'function') {
+        client.auth.onAuthStateChange((event, newSession) => {
+          if (newSession && newSession.user) {
+            import(`${prefix}js/profile.js`).then(({ getProfile }) => {
+              getProfile(newSession.user.id).then(profile => updateNavUI(newSession.user, profile));
+            }).catch(() => updateNavUI(newSession.user, null));
+          } else if (event === 'SIGNED_OUT') {
+            updateNavUI(null, null);
+          }
+        });
+      }
+      return;
+    }
+    // Fallback dynamic import with prefix
+    import(`${prefix}js/supabase.js`).then(({ supabase }) => {
+      supabase.auth.getSession().then(({ data }) => {
+        const session = data && data.session;
+        if (session && session.user) {
+          import(`${prefix}js/profile.js`).then(({ getProfile }) => {
+            getProfile(session.user.id).then(profile => updateNavUI(session.user, profile));
+          }).catch(() => updateNavUI(session.user, null));
+        } else {
+          updateNavUI(null, null);
+        }
+      }).catch(() => {});
+    }).catch(() => {});
   }
+  checkNavAuth();
 });
